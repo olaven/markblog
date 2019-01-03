@@ -22,7 +22,7 @@ let package = Package(
             name: "markblog",
             dependencies: []),
         .target(
-            name: "MarkdownToHtml",
+            name: "markdownToHtml",
             dependencies: []), 
         .testTarget(
             name: "markblogTests",
