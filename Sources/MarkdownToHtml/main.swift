@@ -7,25 +7,11 @@
 
 import Foundation
 
-func getLinesFrom(_ path: String) throws -> Array<String>? {
-    
-    let text = try String.init(contentsOfFile: path)
-    let substrings = (text.split(separator: "\n"))
-    
-    let lines = substrings.map({(substring) in
-        String(substring)
-    })
-    
-    return lines
+let url = URL(fileURLWithPath: FileManager.default.currentDirectoryPath + "/Sources/MarkdownToHtml/test.txt")
+
+var linedData : LinedData?
+do {
+    linedData = try read(from: url)
+} catch let error {
+    print(error)
 }
-
-
-
-
-let path = "/Users/olav/Documents/github/markblog/Sources/MarkdownToHtml/test.txt"
-let lines = try getLinesFrom(path)
-
-for line in lines ?? Array<String>() {
-    print(line)
-}
-
