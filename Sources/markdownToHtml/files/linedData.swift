@@ -42,6 +42,10 @@ class LinedData {
         }
     }
     
+    /// Insert content at specified position
+    public func insert(_ line: String, at position: Int) {
+        lines.insert(line, at: position)
+    }
     
     
     /// Returns true if there is something at given index

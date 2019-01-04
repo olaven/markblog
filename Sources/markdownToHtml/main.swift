@@ -23,7 +23,9 @@ let data = LinedData(from: [
 
 let converted = convert(data)
 
-for line in converted.content() {
+let dataWithUl = wrap(data, from: 2, to: 5, with: "ul")
+
+for line in dataWithUl.content() {
     print(line)
 }
-
+print(dataWithUl)

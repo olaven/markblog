@@ -54,8 +54,29 @@ private func getCorrectTag(for line: String) -> Tag? {
 
 /// Wraps the string in a tag with given name
 /// ex. wrap("hello", in: "p") -> <p>hello</p>
-private func wrap(_ string: String, in tag: String) -> String {
-    return "<" + tag + ">" + string + "</" + tag + ">"
+private func wrap(_ string: String, in name: String) -> String {
+    let tags = getTags(from: name)
+    
+    return tags.start + string + tags.end
 }
 
 
+/// Returns data with lines wrapped
+func wrap(_ data: LinedData, from start: Int, to end: Int, with name: String) -> LinedData {
+    
+    let wrapped = LinedData(from: data.content()) //avoiding reference being modified
+    let tags = getTags(from: name)
+
+    wrapped.insert(tags.start, at: start)
+    wrapped.insert(tags.end, at: end)
+    
+    return wrapped
+}
+
+/// given a tag-name, returns html-tags for it 
+private func getTags(from name: String) -> (start: String, end: String) {
+    let start = "<" + name + ">"
+    let end = "</" + name + ">"
+    
+    return (start, end)
+}
