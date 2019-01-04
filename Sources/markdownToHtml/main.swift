@@ -16,3 +16,14 @@ do {
     print(error)
 }
 
+let header = convert(line: "#header");
+print(header) 
+
+print(convert(line: "## Header"))
+
+print(convert(line: "#### Header"))
+
+print(convert(line: "- list item"))
+print(convert(line: "*not a list item"))
+print(convert(line: "* another list item"))
+
