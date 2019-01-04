@@ -7,6 +7,18 @@
 
 import Foundation
 
+func convert(_ data: LinedData) -> LinedData {
+    for lineNumber in 0...data.content().count {
+        
+        if let line = data.content(at: lineNumber) {
+            let converted = convert(line: line)
+            data.replaceContent(at: lineNumber, with: converted)
+        }
+    }
+    
+    return data
+}
+
 func convert(line input: String) -> String {
     var line = input
 
@@ -24,7 +36,7 @@ func convert(line input: String) -> String {
 
 /// Goes through the tags in mapping and
 /// returns the corresponding tag if there is any 
-func getCorrectTag(for line: String) -> Tag? {
+private func getCorrectTag(for line: String) -> Tag? {
     
     for (pattern, tag) in mapping {
         
@@ -42,7 +54,7 @@ func getCorrectTag(for line: String) -> Tag? {
 
 /// Wraps the string in a tag with given name
 /// ex. wrap("hello", in: "p") -> <p>hello</p>
-func wrap(_ string: String, in tag: String) -> String {
+private func wrap(_ string: String, in tag: String) -> String {
     return "<" + tag + ">" + string + "</" + tag + ">"
 }
 

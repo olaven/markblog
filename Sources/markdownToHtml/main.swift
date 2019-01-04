@@ -9,21 +9,21 @@ import Foundation
 
 let url = URL(fileURLWithPath: FileManager.default.currentDirectoryPath + "/Sources/MarkdownToHtml/test.txt")
 
-var linedData : LinedData?
-do {
-    linedData = try read(from: url)
-} catch let error {
-    print(error)
+let data = LinedData(from: [
+    "# Welcome to my blog post!",
+    "## About me",
+    "I like doing some things.",
+    "For example, I enjoy: ",
+    "* Programming",
+    "- Reading",
+    "- Spending time with my girfriend",
+    "* Spending time wiht my dog",
+    "*I also mistake lists for bold stuff.."
+])
+
+let converted = convert(data)
+
+for line in converted.content() {
+    print(line)
 }
-
-let header = convert(line: "#header");
-print(header) 
-
-print(convert(line: "## Header"))
-
-print(convert(line: "#### Header"))
-
-print(convert(line: "- list item"))
-print(convert(line: "*not a list item"))
-print(convert(line: "* another list item"))
 
