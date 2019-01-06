@@ -7,6 +7,7 @@
 
 import Foundation
 
+// Returns true and the position of match
 class Regex {
     // heavily based on example at: https://benscheirman.com/2014/06/regex-in-swift/
     let expression: NSRegularExpression

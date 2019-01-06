@@ -31,8 +31,8 @@ let mapping: [String: Tag] = [
     "^#{4}[^#]": Tag(md: "####", html: "h4", tagType: .line),
     "^#{5}[^#]": Tag(md: "#####", html: "h5", tagType: .line),
     "^#{6}[^#]": Tag(md: "######", html: "h6", tagType: .line),
-    "^-{1}": Tag(md: "-", html: "li", tagType: .line),
-    "^\\*{1} ": Tag(md: "-", html: "li", tagType: .line)
+    "^(^|(  )(  )*)-{1} ": Tag(md: "-", html: "li", tagType: .line),
+    "^(^|(  )(  )*)\\*{1} ": Tag(md: "*", html: "li", tagType: .line)
 ]
 
 
