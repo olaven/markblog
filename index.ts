@@ -1,11 +1,5 @@
+#!/usr/bin/env node
 
-import {readFile, writeFile, fstat, readdir} from 'fs'; 
-const postsDir = __dirname + "/posts"
+import {program} from './src/program'; 
 
-readdir(postsDir, (error, filenames) => {
-    if (error) throw error 
-
-    filenames.forEach(filename => {
-        console.log(filename); 
-    })
-}); 
+program.parse(process.argv); 

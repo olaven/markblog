@@ -13,6 +13,8 @@
     "@types/node": "^10.12.18"
   },
   "dependencies": {
+    "commander": "^2.19.0",
+    "create-directories": "^1.0.0",
     "marky-markdown": "^12.0.0"
   }
 }

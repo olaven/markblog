@@ -3,4 +3,5 @@ build
 .vscode/ 
 node_modules 
 posts
+generated
 yarn.lock 
