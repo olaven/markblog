@@ -1,6 +1,6 @@
-.DS_Store
-/.build
-/Packages
-/*.xcodeproj
-./*.xcodeproj
-
+.DS_Store 
+build 
+.vscode/ 
+node_modules 
+posts
+yarn.lock 
