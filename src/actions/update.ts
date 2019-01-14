@@ -2,15 +2,18 @@
  * Run the static-html generator 
  */
 import { config } from '../../config'; 
-import { convert } from '../convert'; 
+import { generatePosts } from '../generation/generatePosts'; 
+import { generateIndex } from '../generation/generateIndex'; 
 
 
 export const update = () => {
     let urls = config.url.posts;
-    convert(urls.md, urls.html,
+    // generatepsots
+    generatePosts(urls.md, urls.html,
         error => {
             console.log(error);
         }, () => {
-            console.log("converted");
+            // generate index             
+            generateIndex(); 
         })
 }
