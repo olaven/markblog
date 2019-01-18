@@ -12,7 +12,7 @@ export type ErrorHandler = (error: Error) => void
  * @param action callback that gets each filename 
  * @throws if an error occurs when reading dir
  */
-export const forEachFileIn = (directory: string, action: (filename) => void) => {
+export const forEachFileIn = (directory: string, action: (filename: string) => void) => {
     readdir(directory, (error, filenames) => {
         if (error) throw error; 
         filenames.forEach(filename => {
@@ -28,7 +28,7 @@ export const forEachFileIn = (directory: string, action: (filename) => void) => 
  */
 export const getContentsOf = (file: string, onSuccess: (content: string) => void) => {
     readFile(file, 'utf-8', (error, content) => {
-        if (error) throw error; 
+        if (error) throw error 
         onSuccess(content); 
     })
 }

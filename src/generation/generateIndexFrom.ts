@@ -6,16 +6,12 @@ import { forEachFileIn, getContentsOf } from './util';
 
 
 
-export const generateIndex = () => {
+export const generateIndexFrom = (arrayOfHtml: string[]) => {
     parse((parser) => {
-        forEachFileIn(config.url.posts.html, filename => {
-            const currentFile = path.join(config.url.posts.html, filename);
-            getContentsOf(currentFile, content => {
-
-                parser.write(content);
-    
-            });
-        });
+        
+        arrayOfHtml.forEach(html => {
+            parser.write(html); 
+        })
     })
 }
 

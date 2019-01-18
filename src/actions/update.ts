@@ -2,16 +2,15 @@
  * Run the static-html generator 
  */
 import { config } from '../../config'; 
-import { generatePosts } from '../generation/generatePosts'; 
-import { generateIndex } from '../generation/generateIndex'; 
+import { getHtmlFromFilesIn } from '../generation/getHtmlFromFilesIn'; 
+import { generateIndexFrom } from '../generation/generateIndexFrom'; 
 
 
 export const update = () => {
-    let urls = config.url.posts;
+    let postsDirectory = config.url.posts;
     // generatepsots
-    generatePosts(urls.md, urls.html,
-        () => {
-            // generate index             
-            generateIndex(); 
-        })
+    const htmlFromFiles = getHtmlFromFilesIn(postsDirectory); 
+    console.log("THIS SHOULD NOT BE EMPTY: ", htmlFromFiles); 
+    generateIndexFrom(htmlFromFiles); 
+
 }
