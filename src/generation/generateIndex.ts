@@ -9,13 +9,13 @@ import { forEachFileIn, getContentsOf } from './util';
 export const generateIndex = () => {
     parse((parser) => {
         forEachFileIn(config.url.posts.html, filename => {
-            const pathToFile = path.join(config.url.posts.html, filename);
-            getContentsOf(pathToFile, content => {
+            const currentFile = path.join(config.url.posts.html, filename);
+            getContentsOf(currentFile, content => {
 
                 parser.write(content);
     
-            }, error => { if (error) throw error });
-        }, (error) => {if (error) console.log(error)});
+            });
+        });
     })
 }
 

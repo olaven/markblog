@@ -14,7 +14,6 @@ import { forEachFileIn, getContentsOf ,ErrorHandler } from './util';
 export const generatePosts = (
     mdDir: string,
     htmlDir: string,
-    onError: ErrorHandler,
     onSuccess: () => void
 ) => {
     
@@ -28,11 +27,11 @@ export const generatePosts = (
             const html = marky(content); 
             
             writeFile(paths.html, html, null, (error) => {
-                if (error) onError(error);
+                if (error) throw error;
             }); 
 
-        }, error => {if (error) onError(error)}); 
-    }, error => { if (error) onError(error) }); 
+        }); 
+    }); 
 
     onSuccess(); 
 }
