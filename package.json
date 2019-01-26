@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "main": "build/index.js",
   "scripts": {
-    "start": "ts-node index.ts",
+    "start": "ts-node src/index.ts",
     "build": "tsc"
   },
   "repository": "https://github.com/olaven/markblog.git",
@@ -15,7 +15,6 @@
   "dependencies": {
     "commander": "^2.19.0",
     "create-directories": "^1.0.0",
-    "htmlparser2": "^3.10.0",
     "marky-markdown": "^12.0.0"
   }
 }

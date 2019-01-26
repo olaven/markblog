@@ -32,3 +32,17 @@ export const getContentsOf = (file: string, onSuccess: (content: string) => void
         onSuccess(content); 
     })
 }
+
+/**
+ * Returns filename from path
+ */
+export const getFilenameFromPath = (path: string, withExtension: boolean): string => {
+    const parts = path.split("/"); 
+    let name = parts[parts.length - 1]; 
+
+    if (withExtension) return name 
+
+    // removed the extension
+    name = name.split(".").slice(0, -1).join(); 
+    return name; 
+}
