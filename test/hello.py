@@ -3,7 +3,7 @@ from click.testing import CliRunner
 from source.hello import hello
 
 
-class Test(TestCase):
+class HelloTest(TestCase):
 
     @classmethod
     def setUpClass(cls):
