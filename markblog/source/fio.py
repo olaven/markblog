@@ -13,8 +13,4 @@ def read_directory(path, include_directories=False):
     else:
         files = [file for file in scandir(path) if file.is_file()]
 
-    for file in files:
-        print(file.name)
-        print(file.path)
-
     return files

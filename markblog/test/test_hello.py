@@ -1,6 +1,6 @@
 from unittest import TestCase
 from click.testing import CliRunner
-from source.hello import hello
+from markblog.source.hello import hello
 
 
 class HelloTest(TestCase):
