@@ -10,8 +10,8 @@ def cli():
 
 @cli.command()
 @click.argument("path", type=click.Path(exists=True))
-def init():
-    init_command()
+def init(path):
+    init_command(path)
 
 
 if __name__ == '__main__':
