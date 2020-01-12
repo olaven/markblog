@@ -14,4 +14,4 @@ python_version = "3.7"
 
 [scripts]
 some = "python source/hello.py"
-tests = "bash ./run-tests.sh" # TODO
+test = "python -m unittest discover markblog/test"

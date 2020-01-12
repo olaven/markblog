@@ -10,7 +10,7 @@ commander
 
 commander
     .command("init")
-    .description("Initialize a new blog in current directory")
+    .description("Initialize a new existing_blog in current directory")
     .action(() => {
         init(); 
     }); 
