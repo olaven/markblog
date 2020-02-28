@@ -5,7 +5,7 @@ from markblog.test.test_base import TestBase
 
 
 def get_markdown_folder(include_directories=False):
-    return get_entries("../files/markdown", include_directories)
+    return get_entries("files/markdown", include_directories)
 
 
 class IoTest(TestBase):
