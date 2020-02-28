@@ -1,0 +1,1 @@
+deno ./markblog.ts
