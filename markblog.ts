@@ -20,12 +20,3 @@ switch(Deno.args[0]?.toLowerCase()) {
         commands.show_help();
         break;
 }
-
-
-
-const init = () => {
-
-}
-
-
-

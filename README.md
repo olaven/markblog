@@ -2,7 +2,7 @@
 The way to blog with markdown. 
 
 # TODO: 
-- [ ] build-command
+- [X] build-command
 - [X] init-command 
 - [ ] collection of posts
 - [ ] Testing 
