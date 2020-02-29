@@ -3,8 +3,9 @@ The way to blog with markdown.
 
 # TODO: 
 - [ ] build-command
-- [ ] init-command 
+- [X] init-command 
 - [ ] collection of posts
+- [ ] Testing 
 - [ ] config in separate file? 
 
 ## Idea 👁‍🗨
