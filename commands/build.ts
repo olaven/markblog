@@ -1,8 +1,8 @@
 import { get_posts } from "../posts.ts";
 import { get_index } from "../index.ts";
-import { assemble_html_page, write_file } from "../common.ts";
+import { assemble_html_page, write_file, Options } from "../common.ts";
 
-export const build = async (options: BuildOptions) => {
+export const build = async (options: Options) => {
 
     try {
         await Deno.mkdir(options.post_destination);
@@ -21,11 +21,4 @@ export const build = async (options: BuildOptions) => {
     const content = index.main_content.concat(index.links);
     const html = await assemble_html_page(content, options.index_style);
     write_file("index.html", html);
-}
-
-export interface BuildOptions {
-    post_source: string, 
-    post_destination: string, 
-    post_style: string,
-    index_style: string, 
 }

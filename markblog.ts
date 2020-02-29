@@ -1,5 +1,4 @@
-import { build } from "./commands/build.ts";
-import { show_help } from "./commands/help.ts";
+import { commands } from "./commands/commands.ts";
 
 const options = {
     post_source: "./posts", 
@@ -12,13 +11,13 @@ const options = {
 switch(Deno.args[0]?.toLowerCase()) {
 
     case "build": 
-        await build(options);
+        await commands.build(options);
         break;
     case "init": 
-        throw "init is not implemented";
+        commands.init(options);
         break;
     default: 
-        show_help();
+        commands.show_help();
         break;
 }
 

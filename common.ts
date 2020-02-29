@@ -4,6 +4,12 @@ import { encode } from "https://deno.land/std/strings/encode.ts";
 
 const { create, readFile, writeFile } = Deno; 
 
+export interface Options {
+    post_source: string, 
+    post_destination: string, 
+    post_style: string,
+    index_style: string, 
+}
 
 export const write_file = async (path: string, content: string) => {
     
