@@ -1,4 +1,4 @@
-import {get_posts, Post} from "./posts.ts";
+import {get_posts} from "./posts.ts";
 import {write_file, assemble_html_page} from "./common.ts"
 import {get_index} from "./index.ts";
 

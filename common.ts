@@ -1,4 +1,4 @@
-import marked from "https://raw.githubusercontent.com/denolib/marked/master/main.ts";
+import marked from "https://raw.githubusercontent.com/olaven/marked/strict-types/main.ts";
 import { decode } from "https://deno.land/std/strings/decode.ts";
 import { encode } from "https://deno.land/std/strings/encode.ts";
 
@@ -20,9 +20,9 @@ const read_file = async (path: string): Promise<string> => {
 
 export const get_html = async (path: string): Promise<string> => {
 
-    const content_as_markdown = await read_file(path);
-    const content_as_html = marked(content_as_markdown as string);
-
+    const content_as_markdown = (await read_file(path)) as string;
+    const content_as_html = marked(content_as_markdown);
+    
     return content_as_html;
 };
 
