@@ -27,15 +27,20 @@ const get_header_level = (level: number) => {
 
 const render_links = (collection: Collection, level = 0): string => {
 
+    const posts = collection.posts
+        .sort((a, b) => a.created  < b.created? 1: -1)
+        .map(post => `<li><a href="${post.location}">${post.title}<a/></li>`)
+        .join("")
+
+    const collections = collection.subcollections
+        .map(subcollection => render_links(subcollection, level + 1))
+        .join("")
+
     return `
         <h${get_header_level(level)}>${collection.name}</h${get_header_level(level)}>
         <ul>
-        ${collection.posts.map(post => 
-            `<li><a href="${post.location}">${post.title}<a/></li>`    
-        ).join("")}
-        ${collection.subcollections.map(subcollection => 
-            render_links(subcollection, level + 1)    
-        ).join("")}
+            ${posts}
+            ${collections}
         </ul>
     `
 }

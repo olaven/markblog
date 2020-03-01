@@ -19,17 +19,20 @@ const read_folder = async (folder: string) => {
     return result;
 };
 
+const to_date = (unix_time: number) =>
+    new Date((unix_time as number) * 1000)
+
 const to_posts = (source: string, destination: string) => {
 
     return async (file: Deno.FileInfo): Promise<Post> => {
         
         const filename = file.name as string;
-
+        
         const title = get_title(filename);
         const html = await get_html(`${source}/${filename}`);
         const location = `${destination}/${filename.replace(".md", ".html")}`
-        const created = new Date(file.created as number); //FIXME: this and below date is wrongly converted
-        const modification = new Date(file.modified as number);
+        const created = to_date(file.created as number); 
+        const modification = to_date(file.modified as number);
         
         return {title, html, location, created, modification};
     }
