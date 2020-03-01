@@ -68,7 +68,7 @@ export const get_collection = async (source: string, destination: string): Promi
     
     const collection: Collection = {
         name: get_collection_name(source),
-        path: source,
+        path: destination,
         subcollections: await Promise.all(files.filter(is_collection).map(file => get_collection(`${source}/${file.name}`, `${destination}/${file.name}`))),
         posts: await Promise.all(files.filter(is_post).map(to_posts(source, destination)))
     }      

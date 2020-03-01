@@ -14,33 +14,12 @@ const create_dir = async (path: string) => {
         await Deno.mkdir(path);
     } catch(error) {
     
-        if (error.kind !== Deno.ErrorKind.AlreadyExists)
+        if (error.kind !== Deno.ErrorKind.AlreadyExists) 
             throw error 
     }
 }
 
-const write_collection = async (current_path: string, collection: Collection, options: Options) => {
-
-    collection.posts.forEach(async post => {
-
-        const html = await assemble_html_page(post.html, options.post_style)
-        write_file(post.location, html);
-    });
-
-    if (current_path !== options.post_destination) {
-
-        //i.e. subcollections
-        await create_dir(current_path);
-    }
-
-    collection.subcollections.forEach(subcollection => {
-
-        //NOTE: remember that this is async 
-        write_collection(collection.path, collection, options)
-    });
-}
-
-const get_header = (level: number) => {
+const get_header_level = (level: number) => {
 
     if (level >= 5) return 6;
     else return level + 1;
@@ -49,16 +28,34 @@ const get_header = (level: number) => {
 const render_links = (collection: Collection, level = 0): string => {
 
     return `
-        <h${get_header(level)}>${collection.name}</h${get_header(level)}>
+        <h${get_header_level(level)}>${collection.name}</h${get_header_level(level)}>
         <ul>
         ${collection.posts.map(post => 
-            `<li><a href="${post.location}">${post.title}<a/></li>\n`    
+            `<li><a href="${post.location}">${post.title}<a/></li>`    
         )}
         ${collection.subcollections.map(subcollection => 
             render_links(subcollection, level + 1)    
         )}
         </ul>
     `
+}
+
+const write_posts = async (collection: Collection, options: Options) => {
+
+    await create_dir(collection.path);
+
+
+    collection.posts
+        .forEach(async (post) => {
+            console.log("writing ", post.location);
+            const html = await assemble_html_page(post.html, options.index_style);
+            write_file(post.location, html);
+        });
+
+    collection.subcollections
+        .forEach(subcollection => 
+            write_posts(subcollection, options)
+        );
 }
 
 export const build = async (options: Options) => {
@@ -68,7 +65,11 @@ export const build = async (options: Options) => {
     const collection = await get_collection(options.post_source, options.post_destination);
     const index = await get_index(collection);
 
-    const links = render_links(collection)
+    //posts: 
+    await write_posts(collection, options);
+
+    //index
+    const links = render_links(collection);
     const content = index.main_content.concat(links);
     const html = await assemble_html_page(content, options.index_style);
     write_file("index.html", html);
