@@ -32,10 +32,10 @@ const render_links = (collection: Collection, level = 0): string => {
         <ul>
         ${collection.posts.map(post => 
             `<li><a href="${post.location}">${post.title}<a/></li>`    
-        )}
+        ).join("")}
         ${collection.subcollections.map(subcollection => 
             render_links(subcollection, level + 1)    
-        )}
+        ).join("")}
         </ul>
     `
 }
