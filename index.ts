@@ -1,4 +1,4 @@
-import {Post} from "./posts.ts";
+import {Post, Collection} from "./posts.ts";
 import {get_html} from "./common.ts";
 
 interface Index {
@@ -17,14 +17,14 @@ const get_links = (posts: Post[]) => {
     return "<h2>Posts</h2>".concat("<ul>", list, "</ul>");
 }
 
-export const get_index = async (posts: Post[]): Promise<Index> => {
+export const get_index = async (collection: Collection): Promise<Index> => {
 
     const main_content = await get_html("index.md");
-    const links = get_links(posts);
-
+    const links = get_links(collection.posts);
+    //TODO: colleciton rendering
     return {
         main_content,
         links,
-        posts
+        posts: collection.posts
     }
 };

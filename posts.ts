@@ -10,12 +10,14 @@ export interface Post {
     title: string,
     html: string,
     location: string
-    created: Date,
-    modification: Date
+    created: Date, modification: Date
 }
 
-const read_folder = (folder: string) =>
-    Deno.readDir(folder);
+const read_folder = async (folder: string) => {
+    
+    const result = await Deno.readDir(folder);
+    return result;
+};
 
 const to_posts = (source: string, destination: string) => {
 
@@ -45,9 +47,10 @@ const is_post = (file: Deno.FileInfo) => {
 const is_collection = (file: Deno.FileInfo) => 
     file.isDirectory();
 
-interface Collection {
+export interface Collection {
     name: string,
-    collections: Collection[]
+    path: string,
+    subcollections: Collection[]
     posts: Post[]
 }
 
@@ -62,9 +65,11 @@ const get_collection_name = (path: string) => {
 export const get_collection = async (source: string, destination: string): Promise<Collection> => {
 
     const files = await read_folder(source);
+    
     const collection: Collection = {
         name: get_collection_name(source),
-        collections: await Promise.all(files.filter(is_collection).map(file => get_collection(`${source}/${file.name}`, `${destination}/${file.name}`))),
+        path: source,
+        subcollections: await Promise.all(files.filter(is_collection).map(file => get_collection(`${source}/${file.name}`, `${destination}/${file.name}`))),
         posts: await Promise.all(files.filter(is_post).map(to_posts(source, destination)))
     }      
 
@@ -76,7 +81,6 @@ export const get_posts = async (source: string, destination: string) => Promise.
         .filter(is_post)
         .map(to_posts(source, destination))
 );
-
 
 
 
