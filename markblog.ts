@@ -14,18 +14,9 @@ switch(Deno.args[0]?.toLowerCase()) {
         await commands.build(options);
         break;
     case "init": 
-        commands.init(options);
+        await commands.init(options);
         break;
     default: 
         commands.show_help();
         break;
 }
-
-
-
-const init = () => {
-
-}
-
-
-
