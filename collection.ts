@@ -76,11 +76,5 @@ export const get_collection = async (source: string, destination: string): Promi
     return collection;
 }
 
-export const get_posts = async (source: string, destination: string) => Promise.all(
-    (await read_folder(source))
-        .filter(is_post)
-        .map(to_posts(source, destination))
-);
-
 
 
