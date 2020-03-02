@@ -1,6 +1,4 @@
-import marked from "https://raw.githubusercontent.com/olaven/marked/strict-types/main.ts";
-import { decode } from "https://deno.land/std/strings/decode.ts";
-import { encode } from "https://deno.land/std/strings/encode.ts";
+import marked, { decode, encode } from "./deps.ts";
 
 const { create, readFile, writeFile } = Deno; 
 
