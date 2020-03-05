@@ -30,9 +30,10 @@ export const get_html = async (path: string): Promise<string> => {
     return content_as_html;
 };
 
-export const assemble_html_page = async (content: string, stylesheet: string) => {
+export const assemble_html_page = (content: string, stylesheet: string) => {
 
-    //TODO: fix relative path 
+    if (!stylesheet.endsWith(".css")) throw "stylesheet name has to end with .css"
+
     const template = `
         <!DOCTYPE html>
         <html lang="en">
