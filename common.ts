@@ -1,6 +1,4 @@
-import marked from "https://raw.githubusercontent.com/olaven/marked/strict-types/main.ts";
-import { decode } from "https://deno.land/std/strings/decode.ts";
-import { encode } from "https://deno.land/std/strings/encode.ts";
+import marked, { decode, encode } from "./deps.ts";
 
 const { create, readFile, writeFile } = Deno; 
 
@@ -32,9 +30,10 @@ export const get_html = async (path: string): Promise<string> => {
     return content_as_html;
 };
 
-export const assemble_html_page = async (content: string, stylesheet: string) => {
+export const assemble_html_page = (content: string, stylesheet: string) => {
 
-    //TODO: fix relative path 
+    if (!stylesheet.endsWith(".css")) throw "stylesheet name has to end with .css"
+
     const template = `
         <!DOCTYPE html>
         <html lang="en">
