@@ -50,11 +50,12 @@ const write_posts = async (collection: Collection, options: Options) => {
 
     await create_dir(collection.path);
 
-
     collection.posts
         .forEach(async (post) => {
-            console.log("writing ", post.location);
-            const html = await assemble_html_page(post.html, options.post_style);
+            
+            const style_path = `../`.repeat(collection.level) + options.post_style;
+            console.log("style path: ", style_path);
+            const html = await assemble_html_page(post.html, style_path);
             write_file(post.location, html);
         });
 

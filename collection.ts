@@ -52,6 +52,7 @@ const is_collection = (file: Deno.FileInfo) =>
 
 export interface Collection {
     name: string,
+    level: number, 
     path: string,
     subcollections: Collection[]
     posts: Post[]
@@ -65,14 +66,15 @@ const get_collection_name = (path: string) => {
     return name; 
 }
 
-export const get_collection = async (source: string, destination: string): Promise<Collection> => {
+export const get_collection = async (source: string, destination: string, level = 0): Promise<Collection> => {
 
     const files = await read_folder(source);
     
     const collection: Collection = {
         name: get_collection_name(source),
         path: destination,
-        subcollections: await Promise.all(files.filter(is_collection).map(file => get_collection(`${source}/${file.name}`, `${destination}/${file.name}`))),
+        level: level,
+        subcollections: await Promise.all(files.filter(is_collection).map(file => get_collection(`${source}/${file.name}`, `${destination}/${file.name}`, level + 1))),
         posts: await Promise.all(files.filter(is_post).map(to_posts(source, destination)))
     }      
 
