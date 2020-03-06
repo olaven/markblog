@@ -5,7 +5,7 @@ The way to blog with markdown.
 - [X] build-command
 - [X] init-command 
 - [X] collection of posts
-- [ ] Testing 
+- [X] Testing 
 - [ ] config in separate file? 
 
 ## Idea 👁‍🗨
@@ -15,8 +15,11 @@ that was as simple and "plug-and-play"-like as I wanted.
 
 This need is what I want _Markblog_ to fix for me. 
 
-## Setup
-You only need three things: 
-1. ./index.md, for writing content of the front page. 
-2. ./posts, containing files for each post.
-3. ./style.css 
+## Installation 
+* install [deno](deno.land)
+* `deno install --allow-read --allow-write markblog https://raw.githubusercontent.com/olaven/markblog/master/markblog.ts`
+
+## How to use
+* Run `markblog init` in an empty folder.
+* Write posts in the generated `./posts`, in `.md`-files.
+* Run `markblog build` to build pages.

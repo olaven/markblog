@@ -1,4 +1,5 @@
 import { Options } from "../common.ts";
+import { red, yellow, green, bold } from "../deps.ts"
 
 export const init = async (options: Options) => {
 
@@ -7,11 +8,13 @@ export const init = async (options: Options) => {
         await Deno.mkdir(options.post_source);
         await Deno.create("index.md");
 
-        console.log("Blog structure set up done!");
+        console.log(green(bold("Blog structure set up done!")));
     } catch(error) {
 
-        console.error(error);
-        console.log("An error occured..");
-        console.log("Perhaps this directory already contains a blog?");
+        console.log(`
+            ${error}
+            ${red("An error ocurred..")}  
+            ${yellow("see above for details.")}
+        `)
     }
 }

@@ -1,6 +1,7 @@
 import { get_collection, Collection } from "../collection.ts";
 import { get_index } from "../index.ts";
 import { assemble_html_page, write_file, Options } from "../common.ts";
+import { bold, green } from "../deps.ts";
 
 /**
  * Creates a directory. 
@@ -54,7 +55,6 @@ const write_posts = async (collection: Collection, options: Options) => {
         .forEach(async (post) => {
             
             const style_path = `../`.repeat(collection.level) + options.post_style;
-            console.log("style path: ", style_path);
             const html = await assemble_html_page(post.html, style_path);
             write_file(post.location, html);
         });
@@ -80,4 +80,6 @@ export const build = async (options: Options) => {
     const content = index.main_content.concat(links);
     const html = await assemble_html_page(content, options.index_style);
     write_file("index.html", html);
+
+    console.log(bold(green("Done")) + " bulding.");
 }
