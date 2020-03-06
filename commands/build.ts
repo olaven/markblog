@@ -53,7 +53,7 @@ const write_posts = async (collection: Collection, options: Options) => {
     collection.posts
         .forEach(async (post) => {
             console.log("writing ", post.location);
-            const html = await assemble_html_page(post.html, options.index_style);
+            const html = await assemble_html_page(post.html, options.post_style);
             write_file(post.location, html);
         });
 
