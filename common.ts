@@ -2,12 +2,6 @@ import marked, { decode, encode } from "./deps.ts";
 
 const { create, readFile, writeFile } = Deno; 
 
-export interface Options {
-    post_source: string, 
-    post_destination: string, 
-    post_style: string,
-    index_style: string, 
-}
 
 export const write_file = async (path: string, content: string) => {
     
@@ -16,7 +10,7 @@ export const write_file = async (path: string, content: string) => {
     await writeFile(path, data); 
 }
 
-const read_file = async (path: string): Promise<string> => {
+export const read_file = async (path: string): Promise<string> => {
 
     const data = await readFile(path);
     return decode(data);

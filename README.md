@@ -6,7 +6,8 @@ The way to blog with markdown.
 - [X] init-command 
 - [X] collection of posts
 - [X] Testing 
-- [ ] config in separate file? 
+- [ ] config in separate file
+- [ ] RSS Generation 
 
 ## Idea 👁‍🗨
 I want to write a blog. I also want to write using [markdown](https://en.wikipedia.org/wiki/Markdown), in my own environment. 
@@ -16,8 +17,9 @@ that was as simple and "plug-and-play"-like as I wanted.
 This need is what I want _Markblog_ to fix for me. 
 
 ## Installation 
-* install [deno](deno.land)
+* Install [deno](deno.land)
 * `deno install --allow-read --allow-write markblog https://raw.githubusercontent.com/olaven/markblog/master/markblog.ts`
+* Update your path like the installation tells you to
 
 ## How to use
 * Run `markblog init` in an empty folder.

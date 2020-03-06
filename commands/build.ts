@@ -1,6 +1,7 @@
 import { get_collection, Collection } from "../collection.ts";
 import { get_index } from "../index.ts";
-import { assemble_html_page, write_file, Options } from "../common.ts";
+import { assemble_html_page, write_file } from "../common.ts";
+import { Options } from "../options.ts";
 import { bold, green } from "../deps.ts";
 
 /**
