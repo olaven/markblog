@@ -13,8 +13,9 @@ const create_dir = async (path: string) => {
     
         await Deno.mkdir(path);
     } catch(error) {
-    
-        if (error.kind !== Deno.ErrorKind.AlreadyExists) 
+        
+        const does_already_exist_error = error instanceof Deno.errors.AlreadyExists;
+        if (!does_already_exist_error) 
             throw error 
     }
 }
