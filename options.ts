@@ -32,7 +32,6 @@ export const get_options = async (args: string[]): Promise<Options> => {
     if (!options_path) return default_options;
 
     const file_content = await read_file(options_path);
-    console.log(file_content)
     const options = JSON.parse(file_content) as Options;
 
     return options; 
