@@ -1,4 +1,4 @@
-import marked, { decode, encode } from "./deps.ts";
+import { markdown_to_html, decode, encode } from "./deps.ts";
 
 const { create, readFile, writeFile } = Deno; 
 
@@ -19,7 +19,7 @@ export const read_file = async (path: string): Promise<string> => {
 export const get_html = async (path: string): Promise<string> => {
 
     const content_as_markdown = (await read_file(path)) as string;
-    const content_as_html = marked(content_as_markdown);
+    const content_as_html = markdown_to_html(content_as_markdown);
     
     return content_as_html;
 };
