@@ -1,29 +1,19 @@
 # Markblog 📖
 The way to blog with markdown. 
 
+<iframe src="https://giphy.com/embed/3wDD0Khwova4o" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+
 - [Markblog 📖](#markblog-%f0%9f%93%96)
-  - [TODO:](#todo)
-  - [Idea 👁‍🗨](#idea-%f0%9f%91%81%e2%80%8d%f0%9f%97%a8)
+  - [About](#about)
   - [Installation](#installation)
   - [Getting started](#getting-started)
   - [Documentation](#documentation)
     - [Commands](#commands)
     - [Options](#options)
-
-## TODO: 
-- [X] build-command
-- [X] init-command 
-- [X] collection of posts
-- [X] Testing 
-- [ ] config in separate file
-- [ ] RSS Generation 
-
-## Idea 👁‍🗨
-I want to write a blog. I also want to write using [markdown](https://en.wikipedia.org/wiki/Markdown), in my own environment. 
-There are ways to do this. However, I did not find anything 
-that was as simple and "plug-and-play"-like as I wanted. 
-
-This need is what I want _Markblog_ to fix for me. 
+## About 
+Markblog is a small `cli` that converts markdown files into a lightweight blog. 
+It is not tied to any platform, and you own your files. In other words, you are the only one owning your content. 
+Markblog aims to be easy to use and uncomplicated.
 
 ## Installation 
 * Install [deno](deno.land)
