@@ -1,12 +1,9 @@
 import { commands } from "./commands/commands.ts";
+import { get_options } from "./options.ts"
 
-const options = {
-    post_source: "./posts", 
-    post_destination: "./out", 
-    post_style: "../style.css",
-    index_style: "./style.css", 
-}
+const { args } = Deno 
 
+const options = await get_options(args)
 
 switch(Deno.args[0]?.toLowerCase()) {
 

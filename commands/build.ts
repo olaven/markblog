@@ -1,6 +1,7 @@
 import { get_collection, Collection } from "../collection.ts";
 import { get_index } from "../index.ts";
-import { assemble_html_page, write_file, Options } from "../common.ts";
+import { write_file } from "../common.ts";
+import { Options } from "../options.ts";
 import { bold, green } from "../deps.ts";
 
 /**
@@ -19,6 +20,30 @@ const create_dir = async (path: string) => {
         if (!does_already_exist_error) 
             throw error 
     }
+}
+
+export const assemble_html_page = (content: string, stylesheet: string) => {
+    if (!stylesheet.endsWith(".css")) throw "stylesheet name has to end with .css"
+
+    const template = `
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <meta http-equiv="X-UA-Compatible" content="ie=edge">
+            <title>Blog</title>
+            <!--Default stylesheet:-->
+            <link rel="stylesheet" type="text/css" href="MB_STYLESHEET">
+        </head>
+        <body>
+            MB_CONTENT
+        </body>
+        </html>
+    `
+    return template
+        .replace("MB_CONTENT", content)
+        .replace("MB_STYLESHEET", stylesheet); 
 }
 
 const get_header_level = (level: number) => {
