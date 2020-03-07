@@ -46,14 +46,14 @@ This need is what I want _Markblog_ to fix for me.
 Options enable you to specify where Markblog should look for files 
 when generating your blog. There are default settings, and specifying 
 custom options can be emitted entirely. If however, you want to use custom options, a `.json`-file must be provided,
-with `--options path/to/options.json`. The file has to be formatted in 
-the following way: 
+with `--options path/to/options.json`. 
+
+As an example, custom location of posts _and_ custom stylesheet for posts would look 
+something like this: 
 ```json
 {
-    "post_source": "./my_posts", 
-    "post_destination": "./my_destination", 
-    "post_style": "../post_style.css",
-    "index_style": "./index_style.css", 
+    "post_source": "./path/to/posts", 
+    "post_style": "./path/to/custom/style.css",
 }
 ```
 
