@@ -6,7 +6,7 @@ export interface Options {
     post_style: string,
     index_style: string, }
 
-const default_options: Options = {
+export const default_options: Options = {
     post_source: "./posts", 
     post_destination: "./out", 
     post_style: "../style.css",
@@ -22,6 +22,9 @@ export const get_options_path = (args: string[]) => {
     const path = args[args.indexOf(flag) + 1];
     if (!path)
         throw "no path to options is specified..";
+
+    if (!path.endsWith(".json"))
+        throw `${path} does not look like a .json-file..`;
 
     return path;
 }
