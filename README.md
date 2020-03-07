@@ -1,29 +1,21 @@
-# Markblog 📖
+# Markblog 
 The way to blog with markdown. 
 
-- [Markblog 📖](#markblog-%f0%9f%93%96)
-  - [TODO:](#todo)
-  - [Idea 👁‍🗨](#idea-%f0%9f%91%81%e2%80%8d%f0%9f%97%a8)
+- [Markblog](#markblog)
+  - [About](#about)
   - [Installation](#installation)
   - [Getting started](#getting-started)
+  - [Contributions](#contributions)
   - [Documentation](#documentation)
     - [Commands](#commands)
     - [Options](#options)
 
-## TODO: 
-- [X] build-command
-- [X] init-command 
-- [X] collection of posts
-- [X] Testing 
-- [ ] config in separate file
-- [ ] RSS Generation 
+## About 
+Markblog is a small `cli` that converts markdown files into a lightweight blog. 
+It is not tied to any platform, and you own your files. In other words, you are the only one owning your content. 
+Markblog aims to be easy to use and uncomplicated.
 
-## Idea 👁‍🗨
-I want to write a blog. I also want to write using [markdown](https://en.wikipedia.org/wiki/Markdown), in my own environment. 
-There are ways to do this. However, I did not find anything 
-that was as simple and "plug-and-play"-like as I wanted. 
-
-This need is what I want _Markblog_ to fix for me. 
+![](https://media0.giphy.com/media/3wDD0Khwova4o/200w_s.gif)
 
 ## Installation 
 * Install [deno](deno.land)
@@ -34,6 +26,13 @@ This need is what I want _Markblog_ to fix for me.
 * Run `markblog init` in an empty folder.
 * Write posts in the generated `./posts`, in `.md`-files.
 * Run `markblog build` to build pages.
+
+## Contributions
+All kinds of contributions are welcome. 
+Feature requests, bug reports, code, 
+artwork, documentation, or just feedback in general. 
+
+Do not hesitate to [post an issue](https://github.com/olaven/markblog/issues/new) :honey_pot:
 
 ## Documentation
 ### Commands
