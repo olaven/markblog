@@ -38,9 +38,9 @@ This need is what I want _Markblog_ to fix for me.
 ## Documentation
 ### Commands
 * `markblog init` will set up everything (AKA 1 file and 1 folder 😅)
-  * pass [options](#options) customize. Make sure to use the same options when building!
+  * (_optional_) pass [options](#options) customize. Make sure to use the same options when building!
 * `markblog build` actually builds your webpage. 
-  * * pass [options](#options) customize.
+  * (_optional_) pass [options](#options) customize.
 * `markblog help` if you are stuck 
 ### Options 
 Options enable you to specify where Markblog should look for files 
