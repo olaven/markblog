@@ -4,13 +4,7 @@ export interface Options {
     post_source: string, 
     post_destination: string, 
     post_style: string,
-    index_style: string, }
-
-export const default_options: Options = {
-    post_source: "./posts", 
-    post_destination: "./out", 
-    post_style: "../style.css",
-    index_style: "./style.css", 
+    index_style: string, 
 }
 
 export const get_options_path = (args: string[]) => {
@@ -29,13 +23,28 @@ export const get_options_path = (args: string[]) => {
     return path;
 }
 
+export const read_user_options = async (path: string) => {
+    
+    const content = await read_file(path);
+    const options = JSON.parse(content);
+    return options; 
+} 
+
+//NOTE: has to be exported, as it is used in tests
+export const default_options: Options = {
+    post_source: "./posts", 
+    post_destination: "./out", 
+    post_style: "../style.css",
+    index_style: "./style.css", 
+}
+
 export const get_options = async (args: string[]): Promise<Options> => {
 
     const options_path = get_options_path(args);
-    if (!options_path) return default_options;
+    const user_options = options_path?
+        await read_user_options(options_path): 
+        {}
 
-    const file_content = await read_file(options_path);
-    const options = JSON.parse(file_content) as Options;
-
-    return options; 
+    const options = { ...default_options, ...user_options }
+    return options;
 }
