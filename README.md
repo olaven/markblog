@@ -1,7 +1,7 @@
 # Markblog 📖
 The way to blog with markdown. 
 
-<iframe src="https://giphy.com/embed/3wDD0Khwova4o" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+![](https://media0.giphy.com/media/3wDD0Khwova4o/200w_s.gif)
 
 - [Markblog 📖](#markblog-%f0%9f%93%96)
   - [About](#about)
