@@ -7,7 +7,6 @@ export interface Options {
     index_style: string, 
 }
 
-
 export const get_options_path = (args: string[]) => {
 
     const flag = "--options"
@@ -31,14 +30,15 @@ export const read_user_options = async (path: string) => {
     return options; 
 } 
 
-export const get_options = async (args: string[]): Promise<Options> => {
+//NOTE: has to be exported, as it is used in tests
+export const default_options: Options = {
+    post_source: "./posts", 
+    post_destination: "./out", 
+    post_style: "../style.css",
+    index_style: "./style.css", 
+}
 
-    const default_options: Options = {
-        post_source: "./posts", 
-        post_destination: "./out", 
-        post_style: "../style.css",
-        index_style: "./style.css", 
-    }
+export const get_options = async (args: string[]): Promise<Options> => {
 
     const options_path = get_options_path(args);
     const user_options = options_path?
@@ -46,6 +46,5 @@ export const get_options = async (args: string[]): Promise<Options> => {
         {}
 
     const options = { ...default_options, ...user_options }
-    console.log(options);
     return options;
 }
