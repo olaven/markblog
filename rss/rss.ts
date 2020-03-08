@@ -2,14 +2,7 @@ import { Tag } from "./serialize/serialize.ts"
 
 import { parse_xml } from "../deps.ts";
 import { read_file } from "../common.ts"
-/**
- * Testing RSS/XML-code 
- * for RSS functionality down 
- * the line
- */
 
-
-//NOTE: exported for testing 
 export interface ChannelOptions {
     title: string, 
     link: string, 
@@ -32,8 +25,7 @@ export interface ChannelOptions {
     skipDays?: string,
 }
 
-//NOTE: exported for testing 
-export const get_channel = (options: ChannelOptions): Tag => {
+const get_channel = (options: ChannelOptions): Tag => {
 
     //NOTE: options for a channel as specified as child tags/elements
     const option_tags: Tag[] = Object.keys(options)
@@ -48,8 +40,7 @@ export const get_channel = (options: ChannelOptions): Tag => {
     }
 }
 
-//NOTE: exported for testing 
-export const get_rss = (options: ChannelOptions): Tag => {
+const get_rss = (options: ChannelOptions): Tag => {
 
     const channel = get_channel(options) 
     return {
@@ -59,6 +50,10 @@ export const get_rss = (options: ChannelOptions): Tag => {
             { key: "version", value: "2.0" }
         ]
     }
+}
+
+export const test_functions = {
+    get_channel, get_rss
 }
 
 //TODO: include items in RSS data structure (right now, only channel is added (line 42))

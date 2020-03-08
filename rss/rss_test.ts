@@ -1,7 +1,9 @@
 import { Tag } from "./serialize/serialize.ts"
-import { get_rss, get_channel, ChannelOptions } from "./rss.ts"
+import { test_functions, ChannelOptions } from "./rss.ts"
 import { assertEquals, assert } from "../deps.ts";
+
 const { test } = Deno;
+const { get_rss, get_channel } = test_functions
 
 const get_dummy_options = (
     title = "blog title", 
