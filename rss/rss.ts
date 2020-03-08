@@ -6,9 +6,15 @@ import { read_file } from "../common.ts"
  * the line
  */
 
+interface Attribute {
+    key: string, 
+    value: string, 
+}
+
 export interface Tag {
     name: string, 
-    children: Tag[] | string
+    children: Tag[] | string, 
+    attributes: Attribute[]
 }
 
 export const stringify_tag = (tag: Tag): string => {
@@ -17,7 +23,12 @@ export const stringify_tag = (tag: Tag): string => {
         tag.children: 
         tag.children.map(child => stringify_tag(child))
 
-    return `<${tag.name}>${content}</${tag.name}>`
+    const attributes = tag.attributes
+        .map(attribute => `${attribute.key}="${attribute.value}"`)
+        .join(" ");
+
+    //TODO: make more readable 
+    return `<${tag.name}${attributes.length > 0? ` ${attributes}`: ``}>${content}</${tag.name}>`
 }
 
 interface Channel extends Tag {
@@ -25,8 +36,13 @@ interface Channel extends Tag {
     children: Tag[]
 }
 
-interface RSS {
+interface RSS extends Tag {
     channel: Channel
+}
+
+const get_rss = () => {
+
+    
 }
 
 
