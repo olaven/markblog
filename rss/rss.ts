@@ -3,7 +3,7 @@ import { Tag } from "./serialize/serialize.ts"
 import { parse_xml } from "../deps.ts";
 import { read_file } from "../common.ts"
 
-export interface ChannelOptions {
+export interface ChannelElements {
     title: string, 
     link: string, 
     description: string, 
@@ -25,24 +25,44 @@ export interface ChannelOptions {
     skipDays?: string,
 }
 
-const get_channel = (options: ChannelOptions): Tag => {
 
-    //NOTE: options for a channel as specified as child tags/elements
-    const option_tags: Tag[] = Object.keys(options)
+/**
+ * "All elements of an item are optional, however at least one of title or description must be present."
+ * - https://cyber.harvard.edu/rss/rss.html#hrelementsOfLtitemgt
+ */
+interface ItemElements {
+    title?: string, 
+    link?: string, 
+    description?: string,
+    author?: string, //TODO: email formatted
+    category?: string, //TODO: should have attributes
+    comments?: string, //URL for page for comments
+    enclosure?: string, //TODO: may have attributes
+    guid?: string, // //TODO: may have attributes
+    pubDate?: string, //TODO: proper formatting https://www.ietf.org/rfc/rfc822.txt Sun, 19 May 2002 15:21:36 GMT
+    source?: Tag, //TODO: should have attributes, not string //source of rss feed <source url="http://www.tomalak.org/links2.xml">Tomalak's Realm</source>
+}
+
+const get_channel = (channelElements: ChannelElements, items: ItemElements[]): Tag => {
+
+    const option_tags: Tag[] = Object.keys(channelElements)
         //@ts-ignore
-        .map(option => ({ name: option, children: options[option], attributes: []}))
-    //const items: Tag //TODO: items element
+        .map(element => ({ name: element, children: channelElements[element], attributes: []}))
+    
+    const item_tags = Object.keys(items)
+        //@ts-ignore //FIXME: 'element' is a number
+        .map(element => ({ name: element, children: items[element], attributes: [] }))
 
     return {
         name: "channel", 
-        children: [ ...option_tags/*, items*/ ], 
+        children: [ ...option_tags, ...item_tags ], 
         attributes: []
     }
 }
 
-const get_rss = (options: ChannelOptions): Tag => {
+const get_rss = (channel_elements: ChannelElements, item_elements: ItemElements[] = []): Tag => {
 
-    const channel = get_channel(options) 
+    const channel = get_channel(channel_elements, item_elements);
     return {
         name: "rss", 
         children: [ channel ], 
@@ -57,6 +77,7 @@ export const test_functions = {
 }
 
 //TODO: include items in RSS data structure (right now, only channel is added (line 42))
+//TODO: item-tags can have attibutes, but this is not supported right now. It should be.
 //TODO: write RSS to file 
 //TODO: combine serializing with get_rss in exposed API
 
