@@ -83,3 +83,28 @@ test("serializing includes attributes on children _and_ string child", () => {
     const expected = `<parent parent_key="parent_value"><child child_key="child_value">inner child value</child></parent>`;
     assertEquals(actual, expected);
 });
+
+
+test("serializing includes attributes on children _and_ string child", () => {
+
+    const tag: Tag = {
+        name: "parent", 
+        children: [
+            {
+                name: "first_child", 
+                children: "first_val",
+                attributes: []
+            },
+            {
+                name: "second_child", 
+                children: "second_val",
+                attributes: []
+            }
+        ], 
+        attributes: []
+    }
+
+    const actual = serialize(tag);
+    const expected = `<parent><first_child>first_val</first_child><second_child>second_val</second_child></parent>`;
+    assertEquals(actual, expected);
+});

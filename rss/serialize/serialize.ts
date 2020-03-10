@@ -13,7 +13,9 @@ const get_content = (tag: Tag) => {
     
     return (typeof(tag.children) === "string")? 
         tag.children: 
-        tag.children.map(child => serialize(child))
+        tag.children
+            .map(child => serialize(child))
+            .join("")
 }
 
 const format_attributes = (tag: Tag) => tag.attributes
