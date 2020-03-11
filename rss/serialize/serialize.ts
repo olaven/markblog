@@ -11,6 +11,7 @@ export interface Tag {
 
 const get_content = (tag: Tag) => {
     
+    console.log(tag.children);
     return (typeof(tag.children) === "string")? 
         tag.children: 
         tag.children

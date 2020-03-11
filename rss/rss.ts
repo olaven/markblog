@@ -60,9 +60,10 @@ const get_channel = (channelElements: ChannelElements, items: ItemElements[]): T
     }
 }
 
-const get_rss = (channel_elements: ChannelElements, item_elements: ItemElements[] = []): Tag => {
+export const get_rss = (channel_elements: ChannelElements, item_elements: ItemElements[] = []): Tag => {
 
     const channel = get_channel(channel_elements, item_elements);
+
     return {
         name: "rss", 
         children: [ channel ], 
@@ -76,8 +77,6 @@ export const test_functions = {
     get_channel, get_rss
 }
 
-//TODO: include items in RSS data structure (right now, only channel is added (line 42))
-//TODO: item-tags can have attibutes, but this is not supported right now. It should be.
 //TODO: write RSS to file 
 //TODO: combine serializing with get_rss in exposed API
 
