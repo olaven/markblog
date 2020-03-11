@@ -30,6 +30,7 @@ const format_attributes = (tag: Tag) => tag.attributes
  */
 export const serialize = (tag: Tag): string => {
     
+    console.log("children of ", tag.name, " - ", tag.children, "---");
     const content = get_content(tag);
     const attributes = format_attributes(tag);
 

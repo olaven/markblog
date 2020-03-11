@@ -49,13 +49,16 @@ const get_channel = (channelElements: ChannelElements, items: ItemElements[]): T
         //@ts-ignore
         .map(element => ({ name: element, children: channelElements[element], attributes: []}))
     
-    const item_tags = Object.keys(items)
-        //@ts-ignore //FIXME: 'element' is a number
-        .map(element => ({ name: element, children: items[element], attributes: [] }))
+        
+    const item_tags = items
+        //@ts-ignore
+        .forEach(item => console.log("inner log: ", item))
+
+
 
     return {
         name: "channel", 
-        children: [ ...option_tags, ...item_tags ], 
+        children: [ ...option_tags/*, ...item_tags */], 
         attributes: []
     }
 }
