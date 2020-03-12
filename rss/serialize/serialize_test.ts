@@ -1,6 +1,7 @@
-import { Tag, serialize } from "./serialize.ts"
-import { assertEquals, assert } from "../../deps.ts";
-const { test } = Deno 
+import { serialize, Tag } from "./mod.ts"
+import { assertEquals } from "../../deps.ts";
+
+const { test } = Deno;
 
 test("can serialize tag", () => {
 

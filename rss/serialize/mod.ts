@@ -1,4 +1,5 @@
-interface Attribute {
+
+export interface Attribute {
     key: string, 
     value: string, 
 }
@@ -8,6 +9,7 @@ export interface Tag {
     children: Tag[] | string, 
     attributes: Attribute[]
 }
+
 
 const get_content = (tag: Tag) => {
     

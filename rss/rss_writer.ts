@@ -1,5 +1,5 @@
 import { get_rss } from "./rss.ts"
-import { serialize } from "./serialize/serialize.ts"
+import { serialize } from "./serialize/mod.ts"
 
 const channel = {
     title: "my blog", 

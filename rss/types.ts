@@ -1,4 +1,4 @@
-import { Tag } from "./serialize/serialize.ts"
+import { Tag } from "./serialize/mod.ts"
 
 export interface Channel {
     title: string, 
