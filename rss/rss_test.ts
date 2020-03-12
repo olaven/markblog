@@ -1,9 +1,10 @@
 import { Tag } from "./serialize/serialize.ts"
-import { test_functions, ChannelElements } from "./rss.ts"
+import { test_functions } from "./rss.ts"
 import { assertEquals, assert } from "../deps.ts";
+import { Channel } from "./types.ts";
 
 const { test } = Deno;
-const { get_rss, get_channel } = test_functions
+const { get_rss } = test_functions
 
 const basic_channel = (
     title = "blog title", 
@@ -34,18 +35,18 @@ test("RSS has _one_ child", () => {
 
 test("RSS's child is a 'channel'-tag", () => {
 
-    const channel = get_channel(basic_channel(), []);
+    const channel = get_rss(basic_channel(), []);
 
-    assert(typeof(channel) !== "string"); 
-    assertEquals(channel.name, "channel");
+    assert(typeof(channel.children[0]) !== "string"); 
+    assertEquals(channel.children[0].name, "channel");
 });
 
 test("Channel has specified option-elements", () => {
 
     const category = "Newspapers"
-    const options: ChannelElements = {category, ...basic_channel()}
+    const options = {category, ...basic_channel()}
 
-    const channel = get_channel(options, []);
+    const channel = get_rss(options, []).children[0] as Tag;
     const tag = (channel.children as Tag[])
         .find(tag => tag.name === "category" && tag.children === category && tag.attributes.length === 0);
 
