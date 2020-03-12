@@ -1,4 +1,4 @@
-import {Post, Collection} from "./collection.ts";
+import { Collection } from "./collection.ts";
 import {get_html} from "./common.ts";
 
 interface Index {

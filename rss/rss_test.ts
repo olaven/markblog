@@ -57,6 +57,10 @@ test("RSS structure includes items", () => {
     const channel_elements = basic_channel(); 
     const item_elements = [basic_item()]; 
 
-    const rss = get_rss(channel_elements, item_elements)
-    //TODO: actually test something
+    const rss = get_rss(channel_elements, item_elements);
+    const channel = rss.children[0] as Tag;
+    
+    const children = channel.children as Tag[];
+    const found = children.find(child => child.name === "item");
+    assert(found);
 });
