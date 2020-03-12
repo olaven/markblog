@@ -1,7 +1,6 @@
 import { Tag } from "./serialize/mod.ts"
 import { test_functions } from "./rss.ts"
 import { assertEquals, assert } from "../deps.ts";
-import { Channel } from "./types.ts";
 
 const { test } = Deno;
 const { get_rss } = test_functions

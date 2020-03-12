@@ -1,5 +1,3 @@
-import { get_rss } from "./rss.ts"
-import { serialize } from "./serialize/mod.ts"
 
 const channel = {
     title: "my blog", 
@@ -13,7 +11,3 @@ const items = [
     { title: "third post", link: "https://example.com/third" }
 ]
 
-const rss = await get_rss(channel, items); 
-const serialized = serialize(rss)
-
-console.log(serialized)

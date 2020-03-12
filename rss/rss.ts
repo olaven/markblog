@@ -42,10 +42,4 @@ export const test_functions = {
     get_rss
 }
 
-//TODO: write RSS to file 
-//TODO: combine serializing with get_rss in exposed API
 
-
-//const xml = await read_file("./feed.rss");
-//const parsed = parse_xml(xml);
-//console.log("parsed", JSON.stringify(parsed, null, 4));
