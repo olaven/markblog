@@ -11,7 +11,6 @@ export interface Tag {
 
 const get_content = (tag: Tag) => {
     
-    console.log(tag.children);
     return (typeof(tag.children) === "string")? 
         tag.children: 
         tag.children
@@ -30,7 +29,6 @@ const format_attributes = (tag: Tag) => tag.attributes
  */
 export const serialize = (tag: Tag): string => {
     
-    console.log("children of ", tag.name, " - ", tag.children, "---");
     const content = get_content(tag);
     const attributes = format_attributes(tag);
 

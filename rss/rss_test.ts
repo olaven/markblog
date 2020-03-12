@@ -58,5 +58,5 @@ test("RSS structure includes items", () => {
     const item_elements = [basic_item()]; 
 
     const rss = get_rss(channel_elements, item_elements)
-    console.log(JSON.stringify(rss, null, 4));
+    //TODO: actually test something
 });
