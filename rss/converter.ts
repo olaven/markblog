@@ -1,7 +1,13 @@
 import { Tag } from "./serialize/mod.ts"
-import { Post } from "../collection.ts"
+import { Post, Collection } from "../collection.ts"
 import { get_rss } from "./rss.ts"
 import { Channel, Item } from "./types.ts" //TODO: Decouple! Too many imports
+
+//TODO: integrate RssOptions (or similar) into options? 
+interface Blog {
+    channel: Channel
+    collections: Collection[]
+}
 
 const items_from_post = (posts: Post[]): Item[] => 
     posts.map(post => ({
@@ -9,14 +15,24 @@ const items_from_post = (posts: Post[]): Item[] =>
         link: post.location
     })); 
 
-export const rss_from_posts = (posts: Post[]): Tag => {
+const get_posts_in_collection = (collection: Collection): Post[] => {
 
-    const channel: Channel = {
-        title: "Defaulg blog name", //TODO: options
-        description: "Default blog description",
-        link: "https://example.com"
-    }
+    const posts_in_subcollections = collection.subcollections
+        .flatMap(collection => collection.posts)
 
+    const posts = collection.posts.concat(posts_in_subcollections)
+    return posts; 
+}
+
+const get_posts_in_blog = (blog: Blog) => blog.collections
+        .map(collection => get_posts_in_collection(collection))
+        .flat();    
+
+export const rss_from_blog = (blog: Blog): Tag => {
+
+    const { channel } = blog;
+
+    const posts = get_posts_in_blog(blog)
     const items = items_from_post(posts); 
     const rss = get_rss(channel, items); 
 
