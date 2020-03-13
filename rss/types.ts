@@ -1,4 +1,11 @@
 import { Tag } from "./serialize/mod.ts"
+import { Collection } from "../collection.ts"
+
+//TODO: integrate RssOptions (or similar) into options? 
+export interface Blog {
+    channel: Channel
+    collections: Collection[]
+}
 
 export interface Channel {
     title: string, 

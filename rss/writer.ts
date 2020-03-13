@@ -1,30 +1,12 @@
-import { Collection, Post } from "../collection.ts"
 import { rss_from_blog } from "./converter.ts";
-import { Channel } from "./types.ts";
+import { Blog } from "./types.ts";
+import { serialize } from "./serialize/mod.ts";
+import { write_file } from "../common.ts";
 
-//TODO: integrate RssOptions (or similar) into options? 
 
-interface Blog {
-    channel: Channel
-    collections: Collection[]
-}
+export const write_rss = (blog: Blog, destination_path: string) => {
 
-const get_posts_in_collection = (collection: Collection): Post[] => {
-
-    const posts_in_subcollections = collection.subcollections
-        .flatMap(collection => collection.posts)
-    
-    const posts = collection.posts.concat(posts_in_subcollections)
-    return posts; 
-}
-
-const get_posts_in_blog = (blog: Blog) => blog.collections
-        .map(collection => get_posts_in_collection(collection))
-        .flat();    
-
-export const write_rss = (blog: Blog) => {
-
-    const posts = get_posts_in_blog(blog);
-    const rss = rss_from_blog(posts);
-    
+    const rss = rss_from_blog(blog);
+    const serialized = serialize(rss);
+    write_file(destination_path, serialized);
 } 
