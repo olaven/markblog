@@ -1,6 +1,6 @@
 import { Tag } from "./serialize/mod.ts";
-import { assertEquals, assert } from "../deps.ts";
-import { rss_from_posts } from "./converter.ts";
+import { assertEquals } from "../deps.ts";
+import { rss_from_blog } from "./converter.ts";
 const { test } = Deno;
 
 const get_dummy_post = (title: string) => ({
@@ -13,11 +13,26 @@ const get_dummy_post = (title: string) => ({
 
 test("can convert posts to rss-tag data structure", () => {
 
-    const rss = rss_from_posts([
-        get_dummy_post("first post"),
-        get_dummy_post("second post"),
-        get_dummy_post("third post"),
-    ]);
+    const rss = rss_from_blog({
+        channel: {
+            title: "test blog",
+            description: "test description", 
+            link: "https://example.com"
+        },
+        collections: [
+            {
+                name: "some collection",
+                subcollections: [], 
+                level: 0, 
+                path: "/some/path",
+                posts: [
+                    get_dummy_post("first"),
+                    get_dummy_post("second"),
+                    get_dummy_post("third"),
+                ]
+            }
+        ]
+    });
 
     const channel = rss.children[0] as Tag
     const items = channel.children as Tag[]
