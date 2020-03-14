@@ -1,13 +1,14 @@
 import { Tag } from "./serialize/mod.ts";
 import { assertEquals } from "../deps.ts";
-import { rss_from_blog } from "./converter.ts";
+import { rss_from_blog, items_from_posts } from "./converter.ts";
+import { assertStrContains } from "../../../../Library/Caches/deno/deps/https/deno.land/std/testing/asserts.ts";
 const { test } = Deno;
 
-const get_dummy_post = (title: string) => ({
+const get_dummy_post = (title: string, creationDate: Date = new Date()) => ({
     title: title, 
     html: `<h1>some content in ${title}</h1>`,
     location: `/some/location/{${title}`,
-    created: new Date(), 
+    created: creationDate, 
     modification: new Date()
 });
 
@@ -42,4 +43,23 @@ test("can convert posts to rss-tag data structure", () => {
         .map(item => (item as Tag).children)
         
     assertEquals(converted_posts.length, 3)
+});
+
+
+test("items are sorted with newest posts first", () => {
+
+    const items = items_from_posts([
+        get_dummy_post("expected third", new Date("October 13, 2018 11:13:00")),
+        get_dummy_post("expected first", new Date("October 13, 2020 11:13:00")),
+        get_dummy_post("exptected second", new Date("October 13, 2019 11:13:00")),
+    ], "https://example.com")
+    
+        
+    assertEquals(items.length, 3)
+
+    const [ first, second, third ] = items; 
+    
+    assertStrContains(first.title!, "first");
+    assertStrContains(second.title!, "second");
+    assertStrContains(third.title!, "third");
 });

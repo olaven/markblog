@@ -3,8 +3,10 @@ import { Post, Collection } from "../collection.ts"
 import { get_rss } from "./rss.ts"
 import { Blog, Item } from "./types.ts" //TODO: Decouple! Too many imports
 
-const items_from_post = (posts: Post[], blog_url: string): Item[] => 
-    posts.map(post => {
+//NOTE: exported for testing 
+export const items_from_posts = (posts: Post[], blog_url: string): Item[] => posts
+    .sort((a, b) => a.created < b.created? 1: -1)
+    .map(post => {
         
         //NOTE: remove "." in potential "./"
         const location = post.location.startsWith(".")? 
@@ -35,7 +37,7 @@ export const rss_from_blog = (blog: Blog): Tag => {
     const { channel } = blog;
 
     const posts = get_posts_in_blog(blog)
-    const items = items_from_post(posts, blog.channel.link); 
+    const items = items_from_posts(posts, blog.channel.link); 
     const rss = get_rss(channel, items); 
 
     return rss; 
