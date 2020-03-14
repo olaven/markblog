@@ -5,6 +5,11 @@ export interface Options {
     post_destination: string, 
     post_style: string,
     index_style: string, 
+    rss_options?: {
+        title: string, 
+        description: string, 
+        link: string, 
+    }
 }
 
 export const get_options_path = (args: string[]) => {

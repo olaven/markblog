@@ -41,6 +41,9 @@ Do not hesitate to [post an issue](https://github.com/olaven/markblog/issues/new
 * `markblog build` actually builds your webpage. 
   * (_optional_) pass [options](#options) customize.
 * `markblog help` if you are stuck 
+### RSS 
+Markblog automatically generates an rss-feed, `feed.rss` if `rss_options` is specified 
+in the options file. See the RSS-option under [options](#options) for more details.
 ### Options 
 Options enable you to specify where Markblog should look for files 
 when generating your blog. There are default settings, and specifying 
@@ -72,4 +75,17 @@ something like this:
   * `index_style`
   * The location of stylesheet for the front page, relative to root folder
   * `./style.css` by default 
+* RSS feed 
+  * `rss_options`
+  * Specified necessary information for RSS. If present, feed is automatically generated. 
+  * `title`, `description` and `link` must be present, i.e.:
+    ```json
+    {
+      "rss_options": {
+        "title": "My amazing blog!", 
+        "description": "This is a blog about amazing stuff", 
+        "link": "https://amazing-example-blog.com"
+      }
+    }
+    ```  
 
