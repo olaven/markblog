@@ -17,7 +17,7 @@ const get_title = (filename: string) => filename
 
 const read_folder = async (folder: string) => {
     
-    const result = await Deno.readDir(folder);
+    const result = await Deno.readdir(folder);
     return result;
 };
 
