@@ -1,7 +1,6 @@
 import { Tag } from "./serialize/mod.ts";
-import { assertEquals } from "../deps.ts";
+import { assertEquals, assertStrContains } from "../deps.ts";
 import { rss_from_blog, items_from_posts } from "./converter.ts";
-import { assertStrContains } from "../../../../Library/Caches/deno/deps/https/deno.land/std/testing/asserts.ts";
 const { test } = Deno;
 
 const get_dummy_post = (title: string, creationDate: Date = new Date()) => ({
