@@ -1,4 +1,4 @@
-import { bold } from "../deps.ts"
+import { bold } from "../../deps.ts"
 
 export const show_help = () => {
 
