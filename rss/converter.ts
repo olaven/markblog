@@ -5,7 +5,6 @@ import { Blog, Item } from "./types.ts" //TODO: Decouple! Too many imports
 
 //NOTE: exported for testing 
 export const items_from_posts = (posts: Post[], blog_url: string): Item[] => posts
-    .sort((a, b) => a.created < b.created? 1: -1)
     .map(post => {
         
         //NOTE: remove "." in potential "./"
@@ -22,7 +21,7 @@ export const items_from_posts = (posts: Post[], blog_url: string): Item[] => pos
 const get_posts_in_collection = (collection: Collection): Post[] => {
 
     const posts_in_subcollections = collection.subcollections
-        .flatMap(collection => collection.posts)
+        .flatMap(subcollection => get_posts_in_collection(subcollection))
 
     const posts = collection.posts.concat(posts_in_subcollections)
     return posts; 
@@ -30,7 +29,8 @@ const get_posts_in_collection = (collection: Collection): Post[] => {
 
 const get_posts_in_blog = (blog: Blog) => blog.collections
         .map(collection => get_posts_in_collection(collection))
-        .flat();    
+        .flat()
+        .sort((a, b) => a.created < b.created? 1: -1);  
 
 export const rss_from_blog = (blog: Blog): Tag => {
 
