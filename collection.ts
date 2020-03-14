@@ -1,17 +1,19 @@
 
 import {get_html} from "./common.ts";
 
-const get_title = (filename: string) => filename
-    .replace(".md", "")
-    .split("_")
-    .join(" ");
 
 export interface Post {
     title: string,
     html: string,
     location: string
-    created: Date, modification: Date
+    created: Date, 
+    modification: Date
 }
+
+const get_title = (filename: string) => filename
+    .replace(".md", "")
+    .split("_")
+    .join(" ");
 
 const read_folder = async (folder: string) => {
     
@@ -62,7 +64,7 @@ const get_collection_name = (path: string) => {
 
     const parts = path.split("/");
     const last = parts[parts.length - 1];
-    const name = last.replace("_", " ");
+    const name = get_title(last);
     return name; 
 }
 
@@ -73,7 +75,7 @@ export const get_collection = async (source: string, destination: string, level 
     const collection: Collection = {
         name: get_collection_name(source),
         path: destination,
-        level: level,
+        level: level, //TODO: more readable 
         subcollections: await Promise.all(files.filter(is_collection).map(file => get_collection(`${source}/${file.name}`, `${destination}/${file.name}`, level + 1))),
         posts: await Promise.all(files.filter(is_post).map(to_posts(source, destination)))
     }      
