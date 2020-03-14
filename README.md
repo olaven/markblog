@@ -18,7 +18,7 @@ Markblog aims to be easy to use and uncomplicated.
 ![](https://media0.giphy.com/media/3wDD0Khwova4o/200w_s.gif)
 
 ## Installation 
-* Install [deno](deno.land)
+* Install [deno](https://deno.land)
 * `deno install --allow-read --allow-write markblog https://raw.githubusercontent.com/olaven/markblog/master/markblog.ts`
 * Update your path like the installation tells you to
 

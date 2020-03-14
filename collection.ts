@@ -64,7 +64,7 @@ const get_collection_name = (path: string) => {
 
     const parts = path.split("/");
     const last = parts[parts.length - 1];
-    const name = last.replace("_", " ");
+    const name = get_title(last);
     return name; 
 }
 
