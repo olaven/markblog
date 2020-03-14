@@ -3,8 +3,7 @@ import { Post, Collection } from "../collection.ts"
 import { get_rss } from "./rss.ts"
 import { Blog, Item } from "./types.ts" //TODO: Decouple! Too many imports
 
-//NOTE: exported for testing 
-export const items_from_posts = (posts: Post[], blog_url: string): Item[] => posts
+const items_from_posts = (posts: Post[], blog_url: string): Item[] => posts
     .map(post => {
         
         //NOTE: remove "." in potential "./"
@@ -27,7 +26,8 @@ const get_posts_in_collection = (collection: Collection): Post[] => {
     return posts; 
 }
 
-const get_posts_in_blog = (blog: Blog) => blog.collections
+//NOTE: exported for testing 
+export const get_posts_in_blog = (blog: Blog) => blog.collections
         .map(collection => get_posts_in_collection(collection))
         .flat()
         .sort((a, b) => a.created < b.created? 1: -1);  
