@@ -4,10 +4,18 @@ import { get_rss } from "./rss.ts"
 import { Blog, Item } from "./types.ts" //TODO: Decouple! Too many imports
 
 const items_from_post = (posts: Post[], blog_url: string): Item[] => 
-    posts.map(post => ({
-        title: post.title, 
-        link: `${blog_url}${post.location}`
-    })); 
+    posts.map(post => {
+        
+        //NOTE: remove "." in potential "./"
+        const location = post.location.startsWith(".")? 
+            post.location.substr(1): 
+            post.location
+
+        const { title } = post; 
+        const link = `${blog_url}${location}`
+
+        return { title, link }
+    }); 
 
 const get_posts_in_collection = (collection: Collection): Post[] => {
 

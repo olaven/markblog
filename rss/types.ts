@@ -1,7 +1,7 @@
 import { Tag } from "./serialize/mod.ts"
 import { Collection } from "../collection.ts"
 
-//TODO: integrate RssOptions (or similar) into options? 
+//TODO: this interface is only used by rss. Should it be generalized for more concepts in this program? 
 export interface Blog {
     channel: Channel
     collections: Collection[]
