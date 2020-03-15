@@ -11,10 +11,14 @@ const items_from_posts = (posts: Post[], blog_url: string): Item[] => posts
             post.location.substr(1): 
             post.location
 
-        const { title } = post; 
+        const { title, created } = post; 
         const link = `${blog_url}${location}`
 
-        return { title, link }
+        return { 
+            title, 
+            link, 
+            pubDate: created.toUTCString()
+        }
     }); 
 
 const get_posts_in_collection = (collection: Collection): Post[] => {
