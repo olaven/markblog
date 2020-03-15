@@ -47,8 +47,9 @@ in the options file. See the RSS-option under [options](#options) for more detai
 ### Options 
 Options enable you to specify where Markblog should look for files 
 when generating your blog. There are default settings, and specifying 
-custom options can be emitted entirely. If however, you want to use custom options, a `.json`-file must be provided,
-with `--options path/to/options.json`. 
+custom options can be emitted entirely. If however, you want to use custom options, provide `./options.json` at the 
+root of your blog directory. If you want options in a custom location, use 
+`--options`-flag, like: `--options path/to/options.json`. 
 
 As an example, custom location of posts _and_ custom stylesheet for posts would look 
 something like this: 
