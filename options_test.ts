@@ -1,5 +1,5 @@
 import { get_options_path, get_options, default_options } from "./options.ts"
-import { assertEquals, assertThrows, assertThrowsAsync } from "./deps.ts";
+import { assertEquals, assertThrowsAsync } from "./deps.ts";
 const { test } = Deno 
 
 //Getting options 
@@ -19,24 +19,24 @@ test("throws if --options is not followed with a path", async () => {
 
 
 //Getting the path
-test("returns null if --options is not present", () => {
+test("returns null if --options is not present", async () => {
 
-    const path = get_options_path(["no", "options", "flag", "here"]);
+    const path = await get_options_path(["no", "options", "flag", "here"]);
     assertEquals(null, path);
 });
 
-test("returns correct path", () => {
+test("returns correct path", async () => {
 
     const expected = "./path/to/my/options.json"
-    const path = get_options_path(["--options", expected]);
+    const path = await get_options_path(["--options", expected]);
     assertEquals(expected, path);
 });
 
 test("throws if --options is present without path", () => {
 
-    assertThrows(() => {
+    assertThrowsAsync(async () => {
 
         //NOTE: nothing specified after --options
-        get_options_path(["--options"]);
+        await get_options_path(["--options"]);
     });
 });

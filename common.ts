@@ -33,6 +33,27 @@ export const read_file = async (path: string): Promise<string> => {
     return decode(data);
 };
 
+/**
+ * Returns true or false depending on wether file 
+ * exists or not. 
+ * @param path path to file
+ */
+export const file_exists = async (path: string): Promise<boolean> => {
+
+    try {
+
+        await readFile(path)
+        return true; 
+    } catch(error) {
+
+        const does_not_exist = error instanceof Deno.errors.NotFound
+        if (does_not_exist) 
+            return false;
+        
+        throw error;
+    }
+}
+
 export const get_html = async (path: string): Promise<string> => {
 
     const content_as_markdown = (await read_file(path)) as string;
