@@ -5,18 +5,24 @@ export const assemble_html_page = (content: string, stylesheet: string) => {
 
     const template = `
         <!DOCTYPE html>
-        <html lang="en">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <meta http-equiv="X-UA-Compatible" content="ie=edge">
-            <title>Blog</title>
-            <!--Default stylesheet:-->
-            <link rel="stylesheet" type="text/css" href="MB_STYLESHEET">
-        </head>
-        <body>
-            MB_CONTENT
-        </body>
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <meta http-equiv="X-UA-Compatible" content="ie=edge">
+                <title>Blog</title>
+                
+                <!--Code highlighting-->
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/default.min.css">
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js"></script>
+                <script>hljs.initHighlightingOnLoad();</script>
+                
+                <!--Default stylesheet:-->
+                <link rel="stylesheet" type="text/css" href="MB_STYLESHEET">
+            </head>
+            <body>
+                MB_CONTENT
+            </body>
         </html>
     `
     return template
