@@ -17,7 +17,8 @@ const items_from_posts = (posts: Post[], blog_url: string): Item[] => posts
         return { 
             title, 
             link, 
-            pubDate: created.toUTCString()
+            pubDate: created.toUTCString(), 
+            guid: link //NOTE: link as ID. Change? 
         }
     }); 
 
