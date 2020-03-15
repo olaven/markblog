@@ -11,10 +11,14 @@ const items_from_posts = (posts: Post[], blog_url: string): Item[] => posts
             post.location.substr(1): 
             post.location
 
-        const { title } = post; 
+        const { title, html } = post; 
         const link = `${blog_url}${location}`
 
-        return { title, link }
+        return { 
+            title,
+            link, 
+            description: html //description can contain entire post, https://cyber.harvard.edu/rss/rss.html#hrelementsOfLtitemgt
+        }
     }); 
 
 const get_posts_in_collection = (collection: Collection): Post[] => {

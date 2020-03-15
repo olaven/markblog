@@ -42,7 +42,7 @@ Do not hesitate to [post an issue](https://github.com/olaven/markblog/issues/new
   * (_optional_) pass [options](#options) customize.
 * `markblog help` if you are stuck 
 ### RSS 
-Markblog automatically generates an rss-feed, `feed.rss` if `rss_options` is specified 
+Markblog automatically generates an rss-feed, `feed.xml` if `rss_options` is specified 
 in the options file. See the RSS-option under [options](#options) for more details.
 ### Options 
 Options enable you to specify where Markblog should look for files 
