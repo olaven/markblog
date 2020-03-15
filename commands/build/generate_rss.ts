@@ -15,6 +15,6 @@ export const generate_rss = async (options: Options, root_collection: Collection
             title, link, description
         }, 
         collections: [ root_collection ]
-    }, "./feed.rss");
+    }, "./feed.xml");
     console.log(yellow("Generated RSS."));
 }
