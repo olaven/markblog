@@ -17,7 +17,7 @@ const items_from_posts = (posts: Post[], blog_url: string): Item[] => posts
         return { 
             title, 
             link, 
-            pubDate: created.toUTCString(), 
+            //pubDate: created.toUTCString(), //FIXME: fails because CI/CD creates a new file, making `created` useless. 
             guid: link,
             description: html
         }
@@ -48,8 +48,3 @@ export const rss_from_blog = (blog: Blog): Tag => {
 
     return rss; 
 }
-
-
-
-//TODO: write RSS to file 
-//TODO: combine serializing with get_rss in exposed API
