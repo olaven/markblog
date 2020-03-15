@@ -11,14 +11,15 @@ const items_from_posts = (posts: Post[], blog_url: string): Item[] => posts
             post.location.substr(1): 
             post.location
 
-        const { title, created } = post; 
+        const { title, created, html } = post; 
         const link = `${blog_url}${location}`
 
         return { 
             title, 
             link, 
             pubDate: created.toUTCString(), 
-            guid: link //NOTE: link as ID. Change? 
+            guid: link,
+            description: html
         }
     }); 
 
