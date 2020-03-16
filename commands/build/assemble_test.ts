@@ -1,6 +1,5 @@
 import { assert, assertThrows } from "../../deps.ts";
 import { assemble_html_page } from "./assemble.ts"
-import { assertEquals } from "../../../../../Library/Caches/deno/deps/https/deno.land/std/testing/asserts.ts";
 
 const { test } = Deno;
 
