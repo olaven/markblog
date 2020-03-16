@@ -1,7 +1,7 @@
-import { get_collection, Collection } from "../../collection.ts";
-import { get_index } from "../../index.ts";
+import { get_collection, Collection } from "../../blog/collection.ts"; //TODO: high coupling!
+import { get_index } from "../../blog/index.ts";
 import { write_file, create_dir } from "../../common.ts";
-import { Options } from "../../options.ts";
+import { Options } from "../../blog/options.ts";
 import { assemble_html_page, assemble_links } from "./assemble.ts"
 import { bold, green } from "../../deps.ts";
 import { generate_rss } from "./generate_rss.ts";

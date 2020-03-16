@@ -1,4 +1,4 @@
-import { Collection } from "../../collection.ts"
+import { Collection } from "../../blog/collection.ts"
 
 export const assemble_html_page = (content: string, stylesheet: string, title: string) => {
     if (!stylesheet.endsWith(".css")) throw "stylesheet name has to end with .css"

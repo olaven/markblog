@@ -1,7 +1,7 @@
-import { Options } from "../../options.ts";
-import { write_rss } from "../../rss/writer.ts";
-import { Collection } from "../../collection.ts";
 import { yellow } from "../../deps.ts";
+import { Options } from "../../blog/options.ts";
+import { Collection } from "../../blog/collection.ts";
+import { write_rss } from "../../rss/writer.ts";
 
 export const generate_rss = async (options: Options, root_collection: Collection) => {
 

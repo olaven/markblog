@@ -1,5 +1,5 @@
 import { Tag } from "./serialize/mod.ts"
-import { Collection } from "../collection.ts"
+import { Collection } from "../blog/collection.ts"
 
 //TODO: this interface is only used by rss. Should it be generalized for more concepts in this program? 
 export interface Blog {

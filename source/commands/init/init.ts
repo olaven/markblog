@@ -1,5 +1,5 @@
-import { Options } from "../../options.ts";
 import { red, yellow, green, bold } from "../../deps.ts"
+import { Options } from "../../blog/options.ts";
 
 export const init = async (options: Options) => {
 
