@@ -60,6 +60,10 @@ something like this:
 }
 ```
 
+* Title of blog 
+  * `blog_title`
+  * Title of the page, displayed in the browser tab
+  * "Blog" by default
 * Source of posts
   * `post_source`
   * the directory where Markblog will search for blog-posts

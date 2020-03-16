@@ -1,6 +1,7 @@
 import { read_file, file_exists } from "./common.ts";
 
 export interface Options {
+    blog_title: string, 
     post_source: string, 
     post_destination: string, 
     post_style: string,
@@ -24,10 +25,6 @@ const get_custom_options_path = (flag: string, args: string[]) => {
     return path;
 }
 
-
-//NOTE: if options-flag, follow it 
-//      if options.json, use it 
-//      return default options alone 
 export const get_options_path = async (args: string[]) => {
 
     const custom_flag = "--options"
@@ -51,6 +48,7 @@ export const read_user_options = async (path: string) => {
 
 //NOTE: has to be exported, as it is used in tests
 export const default_options: Options = {
+    blog_title: "Blog",
     post_source: "./posts", 
     post_destination: "./out", 
     post_style: "../style.css",

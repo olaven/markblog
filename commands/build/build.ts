@@ -10,11 +10,12 @@ const write_posts = async (collection: Collection, options: Options) => {
 
     await create_dir(collection.path);
 
+    const style_path = `../`.repeat(collection.level) + options.post_style;
+
     collection.posts
         .forEach(async (post) => {
             
-            const style_path = `../`.repeat(collection.level) + options.post_style;
-            const html = await assemble_html_page(post.html, style_path);
+            const html = await assemble_html_page(post.html, style_path, options.blog_title);
             write_file(post.location, html);
         });
 
@@ -37,7 +38,7 @@ export const build = async (options: Options) => {
     //index
     const links = assemble_links(collection);
     const content = index.main_content.concat(links);
-    const html = await assemble_html_page(content, options.index_style);
+    const html = await assemble_html_page(content, options.index_style, options.blog_title);
     write_file("index.html", html);
 
     //rss 
