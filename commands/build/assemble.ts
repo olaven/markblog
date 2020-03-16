@@ -1,6 +1,6 @@
 import { Collection } from "../../collection.ts"
 
-export const assemble_html_page = (content: string, stylesheet: string) => {
+export const assemble_html_page = (content: string, stylesheet: string, title: string) => {
     if (!stylesheet.endsWith(".css")) throw "stylesheet name has to end with .css"
 
     const template = `
@@ -10,7 +10,7 @@ export const assemble_html_page = (content: string, stylesheet: string) => {
                 <meta charset="UTF-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
                 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-                <title>Blog</title>
+                <title>MB_TITLE</title>
                 
                 <!--Code highlighting-->
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/default.min.css">
@@ -26,6 +26,7 @@ export const assemble_html_page = (content: string, stylesheet: string) => {
         </html>
     `
     return template
+        .replace("MB_TITLE", title)
         .replace("MB_CONTENT", content)
         .replace("MB_STYLESHEET", stylesheet); 
 }
