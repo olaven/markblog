@@ -1,5 +1,5 @@
 import { get_options_path, get_options, default_options } from "./options.ts"
-import { assertEquals, assertThrowsAsync } from "./deps.ts";
+import { assertEquals, assertThrowsAsync } from "../deps.ts";
 const { test } = Deno 
 
 //Getting options 

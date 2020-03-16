@@ -1,5 +1,5 @@
-import { commands } from "./commands/commands.ts";
-import { get_options } from "./options.ts"
+import { commands } from "./source/commands/commands.ts";
+import { get_options } from "./source/blog/options.ts"
 
 const { args } = Deno 
 

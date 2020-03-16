@@ -1,5 +1,5 @@
 import { Collection } from "./collection.ts";
-import {get_html} from "./common.ts";
+import {get_html} from "../common.ts";
 
 interface Index {
     main_content: string,
