@@ -1,4 +1,4 @@
-# Markblog 
+# Markblog ![Test](https://github.com/olaven/markblog/workflows/Test/badge.svg)
 The way to blog with markdown. 
 
 - [Markblog](#markblog)
