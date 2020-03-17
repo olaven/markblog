@@ -107,5 +107,8 @@ export const get_collection = async (source: string, destination: string, level 
     return collection;
 }
 
+export const collection_test_functions = {
+    get_posts_from_files
+}
 
 
