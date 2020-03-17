@@ -68,6 +68,30 @@ const get_collection_name = (path: string) => {
     return name; 
 }
 
+
+const get_subcollections = (files: Deno.FileInfo[], source: string, destination: string, level: number) => Promise.all(
+        files
+            .filter(is_collection)
+            .map(file => get_collection(`${source}/${file.name}`, `${destination}/${file.name}`, level + 1))
+        )
+
+
+
+const get_posts_from_files = async (files: Deno.FileInfo[], source: string, destination: string) => {
+
+    const by_newest_first = (first: Post, second: Post) => 
+        first.created < second.created? 
+            1: -1
+
+    const posts = await Promise.all(files
+        .filter(is_post)
+        .map(to_posts(source, destination))
+    )
+
+    return posts
+        .sort(by_newest_first)
+}
+
 export const get_collection = async (source: string, destination: string, level = 0): Promise<Collection> => {
 
     const files = await read_folder(source);
@@ -76,8 +100,8 @@ export const get_collection = async (source: string, destination: string, level 
         name: get_collection_name(source),
         path: destination,
         level: level, //TODO: more readable 
-        subcollections: await Promise.all(files.filter(is_collection).map(file => get_collection(`${source}/${file.name}`, `${destination}/${file.name}`, level + 1))),
-        posts: await Promise.all(files.filter(is_post).map(to_posts(source, destination)))
+        subcollections: await get_subcollections(files, source, destination, level),
+        posts: await get_posts_from_files(files, source, destination)
     }      
 
     return collection;
