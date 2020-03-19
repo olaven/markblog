@@ -34,6 +34,10 @@ artwork, documentation, or just feedback in general.
 
 Do not hesitate to [post an issue](https://github.com/olaven/markblog/issues/new) :honey_pot:
 
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+[![All Contributors](https://img.shields.io/badge/all_contributors-13-orange.svg?style=flat-square)](#contributors)
+<!-- ALL-CONTRIBUTORS-BADGE:END --> 
+
 ## Documentation
 ### Commands
 * `markblog init` will set up everything (AKA 1 file and 1 folder 😅)
