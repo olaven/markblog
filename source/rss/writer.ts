@@ -1,6 +1,6 @@
 import { rss_from_blog } from "./converter.ts";
 import { Blog } from "./types.ts";
-import { serialize } from "./serialize/mod.ts";
+import { serialize } from "../deps.ts";
 import { write_file } from "../common.ts";
 
 

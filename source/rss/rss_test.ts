@@ -1,4 +1,4 @@
-import { Tag } from "./serialize/mod.ts"
+import { Tag } from "../deps.ts"
 import { test_functions } from "./rss.ts"
 import { assertEquals, assert } from "../deps.ts";
 

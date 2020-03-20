@@ -1,4 +1,4 @@
-import { Tag } from "./serialize/mod.ts"
+import { Tag } from "../deps.ts"
 import { Item, Channel } from "./types.ts";
 
 
