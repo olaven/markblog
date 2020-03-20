@@ -1,4 +1,4 @@
-import { Tag } from "./serialize/mod.ts";
+import { Tag } from "../deps.ts";
 import { assertEquals, assertStrContains } from "../deps.ts";
 import { rss_from_blog, get_posts_in_blog } from "./converter.ts";
 const { test } = Deno;
