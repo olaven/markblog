@@ -1,4 +1,4 @@
-import { read_file, file_exists } from "../common.ts";
+import { read_file, file_exists } from "../file_io.ts";
 
 export interface Options {
     blog_title: string, 
@@ -6,6 +6,7 @@ export interface Options {
     post_destination: string, 
     post_style: string,
     index_style: string, 
+    favicon: string, 
     rss_options?: {
         title: string, 
         description: string, 
@@ -53,6 +54,7 @@ export const default_options: Options = {
     post_destination: "./out", 
     post_style: "../style.css",
     index_style: "./style.css", 
+    favicon: ""
 }
 
 export const get_options = async (args: string[]): Promise<Options> => {

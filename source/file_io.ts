@@ -20,6 +20,11 @@ export const create_dir = async (path: string) => {
     }
 }
 
+/**
+ * Wrtes to file 
+ * @param path 
+ * @param content 
+ */
 export const write_file = async (path: string, content: string) => {
     
     const data = encode(content);
@@ -27,6 +32,10 @@ export const write_file = async (path: string, content: string) => {
     await writeFile(path, data); 
 }
 
+/**
+ * Returns content of file
+ * @param path 
+ */
 export const read_file = async (path: string): Promise<string> => {
 
     const data = await readFile(path);
@@ -54,6 +63,10 @@ export const file_exists = async (path: string): Promise<boolean> => {
     }
 }
 
+/**
+ * Returns content of `.md`-file as HTML. 
+ * @param path 
+ */
 export const get_html = async (path: string): Promise<string> => {
 
     const content_as_markdown = (await read_file(path)) as string;

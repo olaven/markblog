@@ -1,5 +1,5 @@
 
-import {get_html} from "../common.ts";
+import {get_html} from "../file_io.ts";
 
 
 export interface Post {

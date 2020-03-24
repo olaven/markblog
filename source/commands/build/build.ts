@@ -1,6 +1,6 @@
 import { get_collection, Collection } from "../../blog/collection.ts"; //TODO: high coupling!
 import { get_index } from "../../blog/index.ts";
-import { write_file, create_dir } from "../../common.ts";
+import { write_file, create_dir } from "../../file_io.ts";
 import { Options } from "../../blog/options.ts";
 import { assemble_html_page, assemble_links } from "./assemble.ts"
 import { bold, green } from "../../deps.ts";
@@ -15,7 +15,7 @@ const write_posts = async (collection: Collection, options: Options) => {
     collection.posts
         .forEach(async (post) => {
             
-            const html = await assemble_html_page(post.html, style_path, options.blog_title);
+            const html = await assemble_html_page(post.html, style_path, options.blog_title, options.favicon);
             write_file(post.location, html);
         });
 
@@ -38,7 +38,7 @@ export const build = async (options: Options) => {
     //index
     const links = assemble_links(collection);
     const content = index.main_content.concat(links);
-    const html = await assemble_html_page(content, options.index_style, options.blog_title);
+    const html = await assemble_html_page(content, options.index_style, options.blog_title, options.favicon);
     write_file("index.html", html);
 
     //rss 
