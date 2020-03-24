@@ -15,7 +15,7 @@ const write_posts = async (collection: Collection, options: Options) => {
     collection.posts
         .forEach(async (post) => {
             
-            const html = await assemble_html_page(post.html, style_path, options.blog_title);
+            const html = await assemble_html_page(post.html, style_path, options.blog_title, options.favicon);
             write_file(post.location, html);
         });
 
@@ -38,7 +38,7 @@ export const build = async (options: Options) => {
     //index
     const links = assemble_links(collection);
     const content = index.main_content.concat(links);
-    const html = await assemble_html_page(content, options.index_style, options.blog_title);
+    const html = await assemble_html_page(content, options.index_style, options.blog_title, options.favicon);
     write_file("index.html", html);
 
     //rss 
