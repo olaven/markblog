@@ -1,6 +1,6 @@
 import { Collection } from "../../blog/collection.ts"
 
-export const assemble_html_page = (content: string, stylesheet: string, title: string) => {
+export const assemble_html_page = (content: string, stylesheet: string, title: string, favicon: string) => {
     if (!stylesheet.endsWith(".css")) throw "stylesheet name has to end with .css"
 
     const template = `
@@ -12,6 +12,9 @@ export const assemble_html_page = (content: string, stylesheet: string, title: s
                 <meta http-equiv="X-UA-Compatible" content="ie=edge">
                 <title>MB_TITLE</title>
                 
+                <!-- Favicon -->
+                <link rel="shortcut icon" type="image/png" href="MB_FAVICON"/>
+
                 <!--Code highlighting-->
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/default.min.css">
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js"></script>
@@ -27,6 +30,7 @@ export const assemble_html_page = (content: string, stylesheet: string, title: s
     `
     return template
         .replace("MB_TITLE", title)
+        .replace("MB_FAVICON", favicon)
         .replace("MB_CONTENT", content)
         .replace("MB_STYLESHEET", stylesheet); 
 }
