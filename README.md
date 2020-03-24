@@ -80,6 +80,10 @@ something like this:
   * `index_style`
   * The location of stylesheet for the front page, relative to root folder
   * `./style.css` by default 
+* Custom favicon 
+  * `favicon`
+  * Custom favicon
+  * `""` by default 
 * RSS feed 
   * `rss_options`
   * Specified necessary information for RSS. If present, feed is automatically generated. 
