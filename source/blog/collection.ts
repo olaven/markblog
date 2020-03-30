@@ -69,11 +69,12 @@ const get_collection_name = (path: string) => {
 }
 
 
-const get_subcollections = (files: Deno.FileInfo[], source: string, destination: string, level: number) => Promise.all(
-        files
-            .filter(is_collection)
-            .map(file => get_collection(`${source}/${file.name}`, `${destination}/${file.name}`, level + 1))
-        )
+type SubcollectionInfo = {source: string, destination: string, level: number}
+const get_subcollections = (files: Deno.FileInfo[], info: SubcollectionInfo) => Promise.all(
+    files
+        .filter(is_collection)
+        .map(file => get_collection(`${info.source}/${file.name}`, `${info.destination}/${file.name}`, info.level + 1))
+)
 
 
 
@@ -99,8 +100,8 @@ export const get_collection = async (source: string, destination: string, level 
     const collection: Collection = {
         name: get_collection_name(source),
         path: destination,
-        level: level, //TODO: more readable 
-        subcollections: await get_subcollections(files, source, destination, level),
+        level: level, 
+        subcollections: await get_subcollections(files, { source, destination, level }),
         posts: await get_posts_from_files(files, source, destination)
     }      
 

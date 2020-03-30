@@ -33,7 +33,7 @@ export const get_rss = (channel: Channel, items: Item[] = []): Tag => {
             attributes: []
         } ], 
         attributes: [
-            { key: "version", value: "2.0" }
+            ["version", "2.0"]
         ]
     }
 }
