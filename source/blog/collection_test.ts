@@ -3,7 +3,7 @@ const { test } = Deno
 import { collection_test_functions } from "./collection.ts"
 
 const mock_fileinfo = (created: number, is_file: boolean): Deno.FileInfo => ({
-    len: 0, 
+    size: 0, 
     modified: 0, 
     accessed: 0, 
     created, 
