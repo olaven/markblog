@@ -1,9 +1,16 @@
-import { Collection } from "../../blog/collection.ts"
+import { Collection } from "../../blog/collection.ts";
 
-export const assemble_html_page = (content: string, stylesheet: string, title: string, favicon: string) => {
-    if (!stylesheet.endsWith(".css")) throw "stylesheet name has to end with .css"
+export const assemble_html_page = (
+  content: string,
+  stylesheet: string,
+  title: string,
+  favicon: string,
+) => {
+  if (!stylesheet.endsWith(".css")) {
+    throw "stylesheet name has to end with .css";
+  }
 
-    const template = `
+  const template = `
         <!DOCTYPE html>
             <html lang="en">
             <head>
@@ -27,36 +34,36 @@ export const assemble_html_page = (content: string, stylesheet: string, title: s
                 MB_CONTENT
             </body>
         </html>
-    `
-    return template
-        .replace("MB_TITLE", title)
-        .replace("MB_FAVICON", favicon)
-        .replace("MB_CONTENT", content)
-        .replace("MB_STYLESHEET", stylesheet); 
-}
+    `;
+  return template
+    .replace("MB_TITLE", title)
+    .replace("MB_FAVICON", favicon)
+    .replace("MB_CONTENT", content)
+    .replace("MB_STYLESHEET", stylesheet);
+};
 
 const get_header_level = (level: number) => {
-
-    if (level >= 5) return 6;
-    else return level + 1;
-}
+  if (level >= 5) return 6;
+  else return level + 1;
+};
 
 export const assemble_links = (collection: Collection, level = 0): string => {
+  const posts = collection.posts
+    .sort((a, b) => a.created < b.created ? 1 : -1)
+    .map((post) => `<li><a href="${post.location}">${post.title}<a/></li>`)
+    .join("");
 
-    const posts = collection.posts
-        .sort((a, b) => a.created  < b.created? 1: -1)
-        .map(post => `<li><a href="${post.location}">${post.title}<a/></li>`)
-        .join("")
+  const collections = collection.subcollections
+    .map((subcollection) => assemble_links(subcollection, level + 1))
+    .join("");
 
-    const collections = collection.subcollections
-        .map(subcollection => assemble_links(subcollection, level + 1))
-        .join("")
-
-    return `
-        <h${get_header_level(level)}>${collection.name}</h${get_header_level(level)}>
+  return `
+        <h${get_header_level(level)}>${collection.name}</h${get_header_level(
+    level,
+  )}>
         <ul>
             ${posts}
             ${collections}
         </ul>
-    `
-}
+    `;
+};
