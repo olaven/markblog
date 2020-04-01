@@ -3,10 +3,10 @@ import { Item, Channel } from "./types.ts";
 
 const convert_channel_to_tags = (channel_element: Channel): Tag[] =>
   Object.keys(channel_element)
-    //@ts-ignore
     .map(
       (element) => ({
         name: element,
+        //@ts-ignore
         children: channel_element[element],
         attributes: [],
       })
