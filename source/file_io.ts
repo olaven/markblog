@@ -24,9 +24,10 @@ export const create_dir = async (path: string) => {
  * @param content 
  */
 export const write_file = async (path: string, content: string) => {
-  const data = encode(content);
+  
+  const encoded = encode(content);
   await create(path);
-  await writeFile(path, data);
+  await writeFile(path, encoded);
 };
 
 /**
@@ -35,7 +36,7 @@ export const write_file = async (path: string, content: string) => {
  */
 export const read_file = async (path: string): Promise<string> => {
   const data = await readFile(path);
-  return decode(data);
+  return decode(data)
 };
 
 /**
