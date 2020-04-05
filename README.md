@@ -15,8 +15,6 @@ Markblog is a small `cli` that converts markdown files into a lightweight blog.
 It is not tied to any platform, and you own your files. In other words, you are the only one owning your content. 
 Markblog aims to be easy to use and uncomplicated.
 
-![](https://media0.giphy.com/media/3wDD0Khwova4o/200w_s.gif)
-
 ## Installation 
 * Install [deno](https://deno.land)
 * `deno install --allow-read --allow-write markblog https://raw.githubusercontent.com/olaven/markblog/master/markblog.ts`
