@@ -15,14 +15,20 @@ const get_title = (filename: string) =>
     .join(" ");
 
 const read_folder = async (folder: string) => {
-  const result = await Deno.readdir(folder);
-  return result;
+  const entries = await Deno.readdir(folder);
+  const resolved_entries: Deno.DirEntry[] = []
+
+  for await (const entry of entries) {
+    resolved_entries.push(entry);
+  }
+  
+  return resolved_entries
 };
 
 const to_date = (unix_time: number) => new Date((unix_time as number) * 1000);
 
 const to_posts = (source: string, destination: string) => {
-  return async (file: Deno.FileInfo): Promise<Post> => {
+  return async (file: Deno.DirEntry): Promise<Post> => {
     const filename = file.name as string;
 
     const title = get_title(filename);
@@ -35,14 +41,14 @@ const to_posts = (source: string, destination: string) => {
   };
 };
 
-const is_post = (file: Deno.FileInfo) => {
-  const is_file = file.isFile();
+const is_post = (file: Deno.DirEntry) => {
+  const is_file = file.isFile;
   const is_markdown = (file.name as string).endsWith(".md");
 
   return is_file && is_markdown;
 };
 
-const is_collection = (file: Deno.FileInfo) => file.isDirectory();
+const is_collection = (file: Deno.DirEntry) => file.isDirectory;
 
 export interface Collection {
   name: string;
@@ -60,7 +66,7 @@ const get_collection_name = (path: string) => {
 };
 
 type SubcollectionInfo = { source: string; destination: string; level: number };
-const get_subcollections = (files: Deno.FileInfo[], info: SubcollectionInfo) =>
+const get_subcollections = (files: Deno.DirEntry[], info: SubcollectionInfo) => 
   Promise.all(
     files
       .filter(is_collection)
@@ -73,8 +79,10 @@ const get_subcollections = (files: Deno.FileInfo[], info: SubcollectionInfo) =>
       ),
   );
 
+  
+
 const get_posts_from_files = async (
-  files: Deno.FileInfo[],
+  files: Deno.DirEntry[],
   source: string,
   destination: string,
 ) => {
@@ -96,6 +104,7 @@ export const get_collection = async (
   destination: string,
   level = 0,
 ): Promise<Collection> => {
+  
   const files = await read_folder(source);
 
   const collection: Collection = {
