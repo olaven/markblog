@@ -11,11 +11,13 @@ export interface Post {
 const get_title = (filename: string) =>
   filename
     .replace(".md", "")
-    .split("_")
-    .join(" ");
+    .replace("_", " ")
+    /* .split("_") //NOTE: slightly more performant version above
+    .join(" "); */
 
 const read_folder = async (folder: string) => {
-  const entries = await Deno.readdir(folder);
+  
+  const entries = await Deno.readDir(folder);
   const resolved_entries: Deno.DirEntry[] = []
 
   for await (const entry of entries) {
@@ -25,23 +27,26 @@ const read_folder = async (folder: string) => {
   return resolved_entries
 };
 
-const to_date = (unix_time: number) => new Date((unix_time as number) * 1000);
 
 const to_posts = (source: string, destination: string) => {
+  
   return async (file: Deno.DirEntry): Promise<Post> => {
     const filename = file.name as string;
+
+    const file_info = await Deno.stat(`${source}/${filename}`);
 
     const title = get_title(filename);
     const html = await get_html(`${source}/${filename}`);
     const location = `${destination}/${filename.replace(".md", ".html")}`;
-    const created = to_date(file.created as number);
-    const modification = to_date(file.modified as number);
+    const created = file_info.birthtime as Date
+    const modification = file_info.mtime as Date;
 
     return { title, html, location, created, modification };
   };
 };
 
 const is_post = (file: Deno.DirEntry) => {
+  
   const is_file = file.isFile;
   const is_markdown = (file.name as string).endsWith(".md");
 
@@ -59,6 +64,7 @@ export interface Collection {
 }
 
 const get_collection_name = (path: string) => {
+  
   const parts = path.split("/");
   const last = parts[parts.length - 1];
   const name = get_title(last);
@@ -86,6 +92,7 @@ const get_posts_from_files = async (
   source: string,
   destination: string,
 ) => {
+  
   const by_newest_first = (first: Post, second: Post) =>
     first.created < second.created
       ? 1
