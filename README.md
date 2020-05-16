@@ -26,6 +26,9 @@ Markblog aims to be easy to use and uncomplicated.
 * Write posts in the generated `./posts`, in `.md`-files.
 * Run `markblog build` to build pages.
 
+See [this guide](https://olaven.org/out/guides/blog_with_git_and_markdown.html) for a git/CI-integrated setup. 
+This if, of course, just one of the many ways you could use Markblog. 
+
 ## Contributions
 All kinds of contributions are welcome. 
 Feature requests, bug reports, code, 
@@ -40,9 +43,6 @@ Do not hesitate to [post an issue](https://github.com/olaven/markblog/issues/new
 * `markblog build` actually builds your webpage. 
   * (_optional_) pass [options](#options) customize.
 * `markblog help` if you are stuck 
-
-See [this guide](https://olaven.org/out/guides/blog_with_git_and_markdown.html) for a complete setup. 
-This if, of course, just one of the many ways you could use Markblog. 
 
 ### RSS 
 Markblog automatically generates an rss-feed, `feed.xml` if `rss_options` is specified 
