@@ -13,4 +13,4 @@ jobs:
             with:
               deno-version: 1.0.0
           - name: Build
-            run: deno test
+            run: deno test --allow-read
