@@ -8,7 +8,7 @@ export {
 
 //standard Deno lib
 export { encode, decode } from "https://deno.land/std/encoding/utf8.ts";
-export { green, red, yellow, bold } from "https://deno.land/std/fmt/mod.ts";
+export { green, red, yellow, bold } from "https://deno.land/std/fmt/colors.ts";
 
 export {
   assertEquals,
