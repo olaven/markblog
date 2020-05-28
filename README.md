@@ -27,7 +27,7 @@ Markblog aims to be easy to use and uncomplicated.
 * Run `markblog build` to build pages.
 
 See [this guide](https://olaven.org/out/guides/blog_with_git_and_markdown.html) for a git/CI-integrated setup. 
-This if, of course, just one of the many ways you could use Markblog. 
+This is, of course, just one of the many ways you could use Markblog. 
 
 ## Contributions
 All kinds of contributions are welcome. 
