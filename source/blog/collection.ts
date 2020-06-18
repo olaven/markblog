@@ -11,25 +11,24 @@ export interface Post {
 const get_title = (filename: string) =>
   filename
     .replace(".md", "")
-    .replace("_", " ")
-    /* .split("_") //NOTE: slightly more performant version above
-    .join(" "); */
+    .split("_")
+    .join(" ");
 
 const read_folder = async (folder: string) => {
-  
+
   const entries = await Deno.readDir(folder);
   const resolved_entries: Deno.DirEntry[] = []
 
   for await (const entry of entries) {
     resolved_entries.push(entry);
   }
-  
+
   return resolved_entries
 };
 
 
 const to_posts = (source: string, destination: string) => {
-  
+
   return async (file: Deno.DirEntry): Promise<Post> => {
     const filename = file.name as string;
 
@@ -46,7 +45,7 @@ const to_posts = (source: string, destination: string) => {
 };
 
 const is_post = (file: Deno.DirEntry) => {
-  
+
   const is_file = file.isFile;
   const is_markdown = (file.name as string).endsWith(".md");
 
@@ -64,7 +63,7 @@ export interface Collection {
 }
 
 const get_collection_name = (path: string) => {
-  
+
   const parts = path.split("/");
   const last = parts[parts.length - 1];
   const name = get_title(last);
@@ -72,7 +71,7 @@ const get_collection_name = (path: string) => {
 };
 
 type SubcollectionInfo = { source: string; destination: string; level: number };
-const get_subcollections = (files: Deno.DirEntry[], info: SubcollectionInfo) => 
+const get_subcollections = (files: Deno.DirEntry[], info: SubcollectionInfo) =>
   Promise.all(
     files
       .filter(is_collection)
@@ -85,14 +84,14 @@ const get_subcollections = (files: Deno.DirEntry[], info: SubcollectionInfo) =>
       ),
   );
 
-  
+
 
 const get_posts_from_files = async (
   files: Deno.DirEntry[],
   source: string,
   destination: string,
 ) => {
-  
+
   const by_newest_first = (first: Post, second: Post) =>
     first.created < second.created
       ? 1
@@ -111,7 +110,7 @@ export const get_collection = async (
   destination: string,
   level = 0,
 ): Promise<Collection> => {
-  
+
   const files = await read_folder(source);
 
   const collection: Collection = {
@@ -129,5 +128,5 @@ export const get_collection = async (
 };
 
 export const collection_test_functions = {
-  get_posts_from_files,
+  get_posts_from_files, get_title
 };

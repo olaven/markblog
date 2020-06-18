@@ -1,22 +1,9 @@
-import { assert } from "../deps.ts";
+import { assert, assertEquals } from "../deps.ts";
 const { test } = Deno;
 import { collection_test_functions } from "./collection.ts";
 
-const mock_direntry = (created: number, is_file: boolean): Deno.DirEntry => ({
-  name: "name",
-  //size: 0,
-  //modified: 0,
-  //accessed: 0,
-  //created,
-  //dev: 0,
-  //ino: 9,
-  //mode: 0,
-  //nlink: 0,
-  //uid: Math.random(),
-  //gid: Math.random(),
-  //rdev: 0,
-  //blocks: 0,
-  //blksize: 0,
+const mock_direntry = (created: number, is_file: boolean, name = "name"): Deno.DirEntry => ({
+  name: name,
   isFile: is_file,
   isDirectory: !is_file,
   isSymlink: false,
@@ -25,7 +12,7 @@ const mock_direntry = (created: number, is_file: boolean): Deno.DirEntry => ({
 const entry = mock_direntry(2, false)
 
 
-const { get_posts_from_files } = collection_test_functions;
+const { get_posts_from_files, get_title } = collection_test_functions;
 
 test("Posts from files are sorted by creation date", async () => {
   const posts = await get_posts_from_files([
@@ -43,3 +30,20 @@ test("Posts from files are sorted by creation date", async () => {
     assert(current.created > next.created);
   }
 });
+
+
+test("Directory with _ marks ' ' in collection title", async () => {
+
+  const dirname = "my_name";
+  const title = get_title(dirname);
+
+  assertEquals(title, "my name");
+});
+
+test("Direcdtories with multiple _ marks multiple words", async () => {
+
+  const dirname = "one_two_three";
+  const title = get_title(dirname);
+
+  assertEquals(title, "one two three");
+})
