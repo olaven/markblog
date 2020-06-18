@@ -1,0 +1,13 @@
+// For format details, see https://aka.ms/vscode-remote/devcontainer.json or this file's README at:
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.123.0/containers/docker-from-docker-compose
+// If you want to run as a non-root user in the container, see .devcontainer/docker-compose.yml.
+{
+	"name": "Markblog Devcontainer",
+	"build": {
+		"dockerfile": "Dockerfile"
+	},
+	"extensions": [],
+	"settings": {
+		"terminal.integrated.shell.linux": "/bin/bash"
+	}
+}
