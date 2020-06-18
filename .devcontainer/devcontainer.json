@@ -6,7 +6,9 @@
 	"build": {
 		"dockerfile": "Dockerfile"
 	},
-	"extensions": [],
+	"extensions": [
+		"denoland.vscode-deno"
+	],
 	"settings": {
 		"terminal.integrated.shell.linux": "/bin/bash"
 	}
