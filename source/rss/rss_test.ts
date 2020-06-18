@@ -48,7 +48,7 @@ test("Channel has specified option-elements", () => {
   const tag = (channel.children as Tag[])
     .find((tag) =>
       tag.name === "category" && tag.children === category &&
-        tag.attributes.length === 0
+      tag.attributes.length === 0
     );
 
   assert(tag);
