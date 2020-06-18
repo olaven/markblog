@@ -3,10 +3,10 @@
 // If you want to run as a non-root user in the container, see .devcontainer/docker-compose.yml.
 {
 	"name": "Markblog Devcontainer",
-	"dockerfile": "Dockerfile",
-	// Add the IDs of extensions you want installed when the container is created.
+	"build": {
+		"dockerfile": "Dockerfile"
+	},
 	"extensions": [],
-	"dockerFile": "Dockerfile",
 	"settings": {
 		"terminal.integrated.shell.linux": "/bin/bash"
 	}
