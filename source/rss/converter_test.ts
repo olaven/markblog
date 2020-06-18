@@ -1,5 +1,5 @@
 import { Tag } from "../deps.ts";
-import { assertEquals, assertStrContains } from "../deps.ts";
+import { assertEquals, assertStringContains } from "../deps.ts";
 import { rss_from_blog, get_posts_in_blog } from "./converter.ts";
 const { test } = Deno;
 
@@ -78,7 +78,7 @@ test("items are sorted with newest posts first", () => {
 
   const [first, second, third] = items;
 
-  assertStrContains(first.title!, "first");
-  assertStrContains(second.title!, "second");
-  assertStrContains(third.title!, "third");
+  assertStringContains(first.title!, "first");
+  assertStringContains(second.title!, "second");
+  assertStringContains(third.title!, "third");
 });
