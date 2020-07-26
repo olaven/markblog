@@ -1,4 +1,4 @@
-import { read_file, file_exists } from "../file_io.ts";
+import { read_file, file_exists } from "../deps.ts";
 
 export interface Options {
   blog_title: string;
