@@ -3,8 +3,14 @@ import marked from "https://raw.githubusercontent.com/olaven/marked/strict-types
 export { marked as markdown_to_html };
 export {
   serialize,
-  Tag
+  Tag,
 } from "https://raw.githubusercontent.com/olaven/serialize-xml/v0.2.0/mod.ts";
+export {
+  read_file,
+  file_exists,
+  create_dir,
+  write_file,
+} from "https://denopkg.com/olaven/dio";
 
 //standard Deno lib
 export { encode, decode } from "https://deno.land/std/encoding/utf8.ts";
@@ -15,5 +21,5 @@ export {
   assert,
   assertThrows,
   assertThrowsAsync,
-  assertStringContains
+  assertStringContains,
 } from "https://deno.land/std@v0.57.0/testing/asserts.ts";
