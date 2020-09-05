@@ -1,7 +1,9 @@
-# Markblog ![Test](https://github.com/olaven/markblog/workflows/Test/badge.svg) [![codebeat badge](https://codebeat.co/badges/b9a1453a-7b64-4392-bde6-947ce7d96c79)](https://codebeat.co/projects/github-com-olaven-markblog-master)
+![Test](https://github.com/olaven/markblog/workflows/Test/badge.svg) [![codebeat badge](https://codebeat.co/badges/b9a1453a-7b64-4392-bde6-947ce7d96c79)](https://codebeat.co/projects/github-com-olaven-markblog-master)
+# Markblog 
+
 The way to blog with markdown. 
 
-- [Markblog !Test [![codebeat badge](https://codebeat.co/badges/b9a1453a-7b64-4392-bde6-947ce7d96c79)](https://codebeat.co/projects/github-com-olaven-markblog-master)](#markblog-img-srchttpsgithubcomolavenmarkblogworkflowstestbadgesvg-alttest-img-srchttpscodebeatcobadgesb9a1453a-7b64-4392-bde6-947ce7d96c79-altcodebeat-badge)
+- [Markblog](#markblog)
   - [About](#about)
   - [Installation](#installation)
   - [Getting started](#getting-started)
