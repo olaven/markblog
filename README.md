@@ -1,13 +1,14 @@
 # Markblog ![Test](https://github.com/olaven/markblog/workflows/Test/badge.svg) [![codebeat badge](https://codebeat.co/badges/b9a1453a-7b64-4392-bde6-947ce7d96c79)](https://codebeat.co/projects/github-com-olaven-markblog-master)
 The way to blog with markdown. 
 
-- [Markblog](#markblog)
+- [Markblog !Test [![codebeat badge](https://codebeat.co/badges/b9a1453a-7b64-4392-bde6-947ce7d96c79)](https://codebeat.co/projects/github-com-olaven-markblog-master)](#markblog-img-srchttpsgithubcomolavenmarkblogworkflowstestbadgesvg-alttest-img-srchttpscodebeatcobadgesb9a1453a-7b64-4392-bde6-947ce7d96c79-altcodebeat-badge)
   - [About](#about)
   - [Installation](#installation)
   - [Getting started](#getting-started)
   - [Contributions](#contributions)
   - [Documentation](#documentation)
     - [Commands](#commands)
+    - [RSS](#rss)
     - [Options](#options)
 
 ## About 
@@ -17,7 +18,7 @@ Markblog aims to be easy to use and uncomplicated.
 
 ## Installation 
 * Install [deno](https://deno.land)
-* `deno install --allow-read --allow-write --name markblog https:denopkg.com/olaven/markblog`
+* `deno install --allow-read --allow-write --name markblog https://denopkg.com/olaven/markblog`
 * Grab the location path at end of logging 
 * Update your path: `export PATH="<THE_LOCATION>:$PATH"`
 
