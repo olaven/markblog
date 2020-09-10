@@ -3,7 +3,6 @@ import { Post, Collection } from "../blog/collection.ts";
 import { get_rss } from "./rss.ts";
 import { Blog, Item } from "./types.ts"; //TODO: Decouple! Too many imports
 
-
 const items_from_posts = (posts: Post[], blog_url: string): Item[] =>
   posts
     .map((post) => {
