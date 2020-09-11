@@ -7,7 +7,7 @@ export const assemble_html_page = (
   favicon: string,
 ) => {
   if (!stylesheet.endsWith(".css")) {
-    throw "stylesheet name has to end with .css";
+    throw new Error("stylesheet name has to end with .css");
   }
 
   const template = `
@@ -58,9 +58,11 @@ export const assemble_links = (collection: Collection, level = 0): string => {
     .join("");
 
   return `
-        <h${get_header_level(level)}>${collection.name}</h${get_header_level(
-    level,
-  )}>
+        <h${get_header_level(level)}>${collection.name}</h${
+    get_header_level(
+      level,
+    )
+  }>
         <ul>
             ${posts}
             ${collections}

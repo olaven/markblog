@@ -22,4 +22,4 @@ export {
   assertThrows,
   assertThrowsAsync,
   assertStringContains,
-} from "https://deno.land/std@v0.57.0/testing/asserts.ts";
+} from "https://deno.land/std@0.68.0/testing/asserts.ts";
