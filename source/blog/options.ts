@@ -17,11 +17,11 @@ export interface Options {
 const get_custom_options_path = (flag: string, args: string[]) => {
   const path = args[args.indexOf("--options") + 1];
   if (!path) {
-    throw "no path to options is specified..";
+    throw new Error("no path to options is specified..");
   }
 
   if (!path.endsWith(".json")) {
-    throw `${path} does not look like a .json-file..`;
+    throw new Error(`${path} does not look like a .json-file..`);
   }
 
   return path;
