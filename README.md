@@ -2,8 +2,8 @@
 # Markblog 
 The way to blog with markdown. 
 
-If you or your company is benefitting from Markblog, consider supporting me on Github
-<iframe src="https://github.com/sponsors/olaven/card" title="Sponsor olaven" height="225" width="600" style="border: 0;"></iframe>
+If you or your company is benefitting from Markblog, consider becoming a [sponsor](github.com/sponsors/olaven/). 
+This way I can work on new features and continue to maintain it worry-free. 
 
 - [Markblog](#markblog)
   - [About](#about)
