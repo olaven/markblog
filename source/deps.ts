@@ -1,7 +1,7 @@
 // Third party
 import marked from "https://raw.githubusercontent.com/olaven/marked/strict-types/main.ts";
 export { marked as markdown_to_html };
-export {
+export type {
   serialize,
   Tag,
 } from "https://raw.githubusercontent.com/olaven/serialize-xml/v0.2.0/mod.ts";

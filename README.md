@@ -1,7 +1,9 @@
 ![Test](https://github.com/olaven/markblog/workflows/Test/badge.svg) [![codebeat badge](https://codebeat.co/badges/b9a1453a-7b64-4392-bde6-947ce7d96c79)](https://codebeat.co/projects/github-com-olaven-markblog-master)
 # Markblog 
-
 The way to blog with markdown. 
+
+If you or your company is benefitting from Markblog, consider becoming a [sponsor](github.com/sponsors/olaven/). 
+This way I can work on new features and continue to maintain it worry-free. 
 
 - [Markblog](#markblog)
   - [About](#about)
