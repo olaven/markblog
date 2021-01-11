@@ -6,7 +6,7 @@ const convert_channel_to_tags = (channel_element: Channel): Tag[] =>
     .map(
       (element) => ({
         name: element,
-        //@ts-ignore
+        ///@ts-ignore
         children: channel_element[element],
         attributes: [],
       })

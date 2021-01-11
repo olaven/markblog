@@ -2,7 +2,7 @@
 # Markblog 
 The way to blog with markdown. 
 
-If you or your company is benefitting from Markblog, consider becoming a [sponsor](github.com/sponsors/olaven/). 
+If you or your company is benefitting from Markblog, consider becoming a [sponsor](https://github.com/sponsors/olaven/). 
 This way I can work on new features and continue to maintain it worry-free. 
 
 - [Markblog](#markblog)
