@@ -16,7 +16,9 @@ export {
   write_file,
   encode,
   decode,
-} from "https://denopkg.com/olaven/dio/mod.ts";
+  copy_dir,
+  dir_exists,
+} from "https://denopkg.com/olaven/dio@v0.1.0/mod.ts";
 
 export { green, red, yellow, bold } from "https://deno.land/std/fmt/colors.ts";
 

@@ -31,6 +31,7 @@ const get_posts_in_collection = (collection: Collection): Post[] => {
   return posts;
 };
 
+
 //NOTE: exported for testing
 export const get_posts_in_blog = (blog: Blog) =>
   blog.collections
