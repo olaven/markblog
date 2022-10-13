@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-deno test --allow-read --allow-write --unstable
+deno test --allow-read --allow-write --unstable --allow-run
