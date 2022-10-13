@@ -22,7 +22,7 @@ Markblog aims to be easy to use and uncomplicated.
 
 ## Installation 
 * Install [deno](https://deno.land)
-* `deno install --allow-read --allow-write --unstable --name markblog https://denopkg.com/olaven/markblog`
+* `deno install --allow-read --allow-write --unstable --name markblog https://raw.githubusercontent.com/olaven/markblog/master/mod.ts`
 * Grab the location path at end of logging 
 * Update your path: `export PATH="<THE_LOCATION>:$PATH"`
 
