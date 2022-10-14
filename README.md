@@ -105,4 +105,16 @@ something like this:
       }
     }
     ```  
-
+* Git History Integration
+  * `git_history`
+  * Integrates with git to 1) show the latest commit message of a post and 2) link to the latest changelog at the bottom of the page 
+  * `enabled` specifies it is enabled or not. `false` by default.
+  * `host` specifies where the git repo is hosted, for correct links. `"none"` by default. Can be either `"github"`, `"sourcehut"` or `"none"`. In the latter case, no links will be shown.
+    ```json
+    {
+     "git_history": {
+        "enabled": true,
+        "host": "sourcehut" 
+      }
+    }
+    ```  
