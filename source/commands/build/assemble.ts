@@ -88,11 +88,19 @@ const buildHistoryComponent = (
     throw "Fatal error: Git history was enabled without having commits. Should never happen.";
   }
 
-  //FIXME: actually implement with more fields + links if 'host' is present
+  function escape(possible_html_code: string) {
+    return possible_html_code
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#39;");
+  }
+
   return `
   <div class='git-history'>
     This page was last updated on ${latest_commit?.date.toDateString()}</br>
-    Change message: ${latest_commit?.message}</br>
+    Change message: ${escape(latest_commit?.message)}</br>
     ${build_host_link(latest_commit as Commit, history_options)}
   </div>
   `;
