@@ -1,12 +1,16 @@
 import { Collection } from "../../blog/collection.ts";
+import { HistoryOptions } from "../../blog/options.ts";
+import { Commit } from "../../git/parser.ts";
 
-export const assemble_html_page = (
-  content: string,
-  stylesheet: string,
-  title: string,
-  favicon: string,
-) => {
-  if (!stylesheet.endsWith(".css")) {
+export const assemble_html_page = (args: {
+  content: string;
+  stylesheet: string;
+  title: string;
+  favicon: string;
+  latest_commit: Commit | null;
+  history_options: HistoryOptions;
+}) => {
+  if (!args.stylesheet.endsWith(".css")) {
     throw new Error("stylesheet name has to end with .css");
   }
 
@@ -32,14 +36,18 @@ export const assemble_html_page = (
             </head>
             <body>
                 MB_CONTENT
+                ${buildHistoryComponent(
+                  args.latest_commit,
+                  args.history_options
+                )}
             </body>
         </html>
     `;
   return template
-    .replace("MB_TITLE", title)
-    .replace("MB_FAVICON", favicon)
-    .replace("MB_CONTENT", content)
-    .replace("MB_STYLESHEET", stylesheet);
+    .replace("MB_TITLE", args.title)
+    .replace("MB_FAVICON", args.favicon)
+    .replace("MB_CONTENT", args.content)
+    .replace("MB_STYLESHEET", args.stylesheet);
 };
 
 const get_header_level = (level: number) => {
@@ -49,7 +57,7 @@ const get_header_level = (level: number) => {
 
 export const assemble_links = (collection: Collection, level = 0): string => {
   const posts = collection.posts
-    .sort((a, b) => a.created < b.created ? 1 : -1)
+    .sort((a, b) => (a.created < b.created ? 1 : -1))
     .map((post) => `<li><a href="${post.location}">${post.title}<a/></li>`)
     .join("");
 
@@ -58,14 +66,30 @@ export const assemble_links = (collection: Collection, level = 0): string => {
     .join("");
 
   return `
-        <h${get_header_level(level)}>${collection.name}</h${
-    get_header_level(
-      level,
-    )
-  }>
+        <h${get_header_level(level)}>${collection.name}</h${get_header_level(
+    level
+  )}>
         <ul>
             ${posts}
             ${collections}
         </ul>
     `;
 };
+
+function buildHistoryComponent(
+  latest_commit: Commit | null,
+  history_options: HistoryOptions
+) {
+  if (!history_options.enabled) {
+    return "";
+  }
+
+  if (history_options.enabled && latest_commit === null) {
+    throw "Fatal error: Git history was enabled without having commits. Should never happen.";
+  }
+
+  //FIXME: actually implement with more fields + links if 'host' is present
+  return `
+    <p>latest change: ${latest_commit?.message}</p>
+  `;
+}

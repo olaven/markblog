@@ -1,4 +1,14 @@
-import { read_file, file_exists } from "../deps.ts";
+import { file_exists, read_file } from "../deps.ts";
+
+export type HistoryOptions =
+  | {
+      enabled: true;
+      host: "github" | "sourcehut" | "none";
+    }
+  | {
+      enabled: false;
+      host: "none";
+    };
 
 export interface Options {
   blog_title: string;
@@ -7,6 +17,7 @@ export interface Options {
   post_style: string;
   index_style: string;
   favicon: string;
+  git_history: HistoryOptions;
   rss_options?: {
     title: string;
     description: string;
@@ -15,7 +26,7 @@ export interface Options {
 }
 
 const get_custom_options_path = (flag: string, args: string[]) => {
-  const path = args[args.indexOf("--options") + 1];
+  const path = args[args.indexOf(flag) + 1];
   if (!path) {
     throw new Error("no path to options is specified..");
   }
@@ -54,6 +65,10 @@ export const default_options: Options = {
   post_style: "../style.css",
   index_style: "./style.css",
   favicon: "",
+  git_history: {
+    enabled: false,
+    host: "none",
+  },
 };
 
 export const get_options = async (args: string[]): Promise<Options> => {

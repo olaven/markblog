@@ -1,10 +1,10 @@
-import { get_collection, Collection } from "../../blog/collection.ts"; //TODO: high coupling!
+import { Collection, get_collection } from "../../blog/collection.ts"; //FIXME: high coupling!
 import { get_index } from "../../blog/index.ts";
-import { write_file, create_dir } from "../../deps.ts";
 import { Options } from "../../blog/options.ts";
+import { bold, create_dir, green, write_file } from "../../deps.ts";
+import { get_latest_commit } from "../../git/git.ts";
 import { assemble_html_page, assemble_links } from "./assemble.ts";
 import { copy_assets } from "./assets.ts";
-import { bold, green } from "../../deps.ts";
 import { generate_rss } from "./generate_rss.ts";
 
 const write_posts = async (collection: Collection, options: Options) => {
@@ -12,13 +12,15 @@ const write_posts = async (collection: Collection, options: Options) => {
 
   const style_path = `../`.repeat(collection.level) + options.post_style;
 
-  collection.posts.forEach(async (post) => {
-    const html = await assemble_html_page(
-      post.html,
-      style_path,
-      options.blog_title,
-      options.favicon
-    );
+  collection.posts.forEach((post) => {
+    const html = assemble_html_page({
+      content: post.html,
+      stylesheet: style_path,
+      title: options.blog_title,
+      favicon: options.favicon,
+      latest_commit: post.latest_commit,
+      history_options: options.git_history,
+    });
     write_file(post.location, html);
   });
 
@@ -30,10 +32,12 @@ const write_posts = async (collection: Collection, options: Options) => {
 export const build = async (options: Options) => {
   await create_dir(options.post_destination);
 
-  const collection = await get_collection(
-    options.post_source,
-    options.post_destination
-  );
+  const collection = await get_collection({
+    source: options.post_source,
+    destination: options.post_destination,
+    history_options: options.git_history,
+  });
+
   const index = await get_index(collection);
 
   //posts:
@@ -45,12 +49,15 @@ export const build = async (options: Options) => {
   //index
   const links = assemble_links(collection);
   const content = index.main_content.concat(links);
-  const html = assemble_html_page(
+  const html = assemble_html_page({
     content,
-    options.index_style,
-    options.blog_title,
-    options.favicon
-  );
+    stylesheet: options.index_style,
+    title: options.blog_title,
+    favicon: options.favicon,
+    latest_commit: options.git_history.enabled
+      ? await get_latest_commit("./index.md")
+      : null,
+  });
   write_file("index.html", html);
 
   //rss

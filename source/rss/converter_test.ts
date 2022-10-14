@@ -1,6 +1,5 @@
-import { Tag } from "../deps.ts";
-import { assertEquals, assertStringContains } from "../deps.ts";
-import { rss_from_blog, get_posts_in_blog } from "./converter.ts";
+import { assertEquals, assertStringContains, Tag } from "../deps.ts";
+import { get_posts_in_blog, rss_from_blog } from "./converter.ts";
 const { test } = Deno;
 
 const get_dummy_post = (title: string, creationDate: Date = new Date()) => ({
@@ -9,6 +8,7 @@ const get_dummy_post = (title: string, creationDate: Date = new Date()) => ({
   location: `/some/location/{${title}`,
   created: creationDate,
   modification: new Date(),
+  latest_commit: null,
 });
 
 test("can convert posts to rss-tag data structure", () => {
@@ -59,15 +59,15 @@ test("items are sorted with newest posts first", () => {
         posts: [
           get_dummy_post(
             "expected third",
-            new Date("October 13, 2018 11:13:00"),
+            new Date("October 13, 2018 11:13:00")
           ),
           get_dummy_post(
             "expected first",
-            new Date("October 13, 2020 11:13:00"),
+            new Date("October 13, 2020 11:13:00")
           ),
           get_dummy_post(
             "exptected second",
-            new Date("October 13, 2019 11:13:00"),
+            new Date("October 13, 2019 11:13:00")
           ),
         ],
       },

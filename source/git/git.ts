@@ -6,9 +6,11 @@ export const git_is_installed = async () => {
   return result.length >= 1;
 };
 
-export const get_latest_commit = async (
-  path: string
-): Promise<Commit | null> => {
+export const get_latest_commit = async (path: string): Promise<Commit> => {
+  if (!git_is_installed()) {
+    throw "Error: Git history enabled, but git not installed";
+  }
+
   const rawCommit = await execute("git", "log", "-1", "--", path);
 
   if (
@@ -16,7 +18,7 @@ export const get_latest_commit = async (
       "fatal: not a git repository" || "fatal: your current branch" //.. does not have any commits yet
     )
   ) {
-    return null;
+    throw `Error getting commit: ${rawCommit}`;
   }
 
   return parse_commit(rawCommit);
