@@ -114,7 +114,9 @@ something like this:
     {
      "git_history": {
         "enabled": true,
-        "host": "sourcehut" 
+        "host": "sourcehut", 
+        "username": "olaven", 
+        "repo_name": "markblog"
       }
     }
     ```  

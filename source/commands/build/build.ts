@@ -57,6 +57,7 @@ export const build = async (options: Options) => {
     latest_commit: options.git_history.enabled
       ? await get_latest_commit("./index.md")
       : null,
+    history_options: options.git_history,
   });
   write_file("index.html", html);
 

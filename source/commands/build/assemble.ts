@@ -1,5 +1,5 @@
 import { Collection } from "../../blog/collection.ts";
-import { HistoryOptions } from "../../blog/options.ts";
+import { GitHost, HistoryOptions } from "../../blog/options.ts";
 import { Commit } from "../../git/parser.ts";
 
 export const assemble_html_page = (args: {
@@ -76,10 +76,10 @@ export const assemble_links = (collection: Collection, level = 0): string => {
     `;
 };
 
-function buildHistoryComponent(
+const buildHistoryComponent = (
   latest_commit: Commit | null,
   history_options: HistoryOptions
-) {
+) => {
   if (!history_options.enabled) {
     return "";
   }
@@ -90,6 +90,24 @@ function buildHistoryComponent(
 
   //FIXME: actually implement with more fields + links if 'host' is present
   return `
-    <p>latest change: ${latest_commit?.message}</p>
+  <div class='git-history'>
+    This page was last updated on ${latest_commit?.date.toDateString()}</br>
+    Change message: ${latest_commit?.message}</br>
+    ${build_host_link(latest_commit as Commit, history_options)}
+  </div>
   `;
+};
+
+function build_host_link(commit: Commit, options: HistoryOptions): string {
+  if (options.host === "none") {
+    return "";
+  }
+
+  const formats: { [key in GitHost]: string } = {
+    github: `https://github.com/${options.username}/${options.repo_name}/commit/${commit.hash}`,
+    sourcehut: `https://git.sr.ht/~${options.username}/${options.repo_name}/commit/${commit.hash}`,
+  };
+
+  const link = formats[options.host];
+  return `<a href="${link}">View change</a>`;
 }

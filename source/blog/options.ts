@@ -1,9 +1,13 @@
 import { file_exists, read_file } from "../deps.ts";
 
+export type GitHost = "github" | "sourcehut";
+
 export type HistoryOptions =
   | {
       enabled: true;
-      host: "github" | "sourcehut" | "none";
+      host: GitHost | "none";
+      username: string;
+      repo: string;
     }
   | {
       enabled: false;
