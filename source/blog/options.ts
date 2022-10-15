@@ -7,7 +7,7 @@ export type HistoryOptions =
       enabled: true;
       host: GitHost | "none";
       username: string;
-      repo: string;
+      repo_name: string;
     }
   | {
       enabled: false;
