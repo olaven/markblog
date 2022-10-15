@@ -100,7 +100,7 @@ const buildHistoryComponent = (
   return `
   <div class='git-history'>
     This page was last updated on ${latest_commit?.date.toDateString()}</br>
-    Change message: ${escape(latest_commit?.message)}</br>
+    Change message: ${escape(latest_commit?.message as string)}</br>
     ${build_host_link(latest_commit as Commit, history_options)}
   </div>
   `;

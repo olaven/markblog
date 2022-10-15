@@ -10,6 +10,7 @@ This way I can work on new features and continue to maintain it worry-free.
   - [Installation](#installation)
   - [Getting started](#getting-started)
   - [Contributions](#contributions)
+  - [Versions](#versions)
   - [Documentation](#documentation)
     - [Commands](#commands)
     - [RSS](#rss)
@@ -40,6 +41,11 @@ Feature requests, bug reports, code,
 artwork, documentation, or just feedback in general. 
 
 Do not hesitate to [post an issue](https://github.com/olaven/markblog/issues/new) :honey_pot:
+
+## Versions 
+Versions are managed using [Deno's version tool](https://deno.land/x/version@v1.1.0). 
+To update, use `version patch`, `version minor` or `version major` according to [semver](https://semver.org/). 
+This updates the `VERSION` file and creates a git tag for the version.
 
 ## Documentation
 ### Commands
